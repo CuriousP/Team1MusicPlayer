@@ -1,0 +1,39 @@
+﻿<Page
+    x:Class="Team1MusicPlayer.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Team1MusicPlayer"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+        <RelativePanel>
+            <Button x:ConnectionId='2' Content="$#xE80F"
+                    Name="HomeButton"
+                    FontFamily="Segoe MDL2 Assets"
+                                  
+                    RelativePanel.AlignLeftWithPanel="True"
+                    />
+            <Button x:ConnectionId='3' Content="&#xE0A6;"
+                    Name="BackButton"
+                    FontFamily="Segoe MDL2 Assets"
+                                            
+                    RelativePanel.RightOf="HomeButton"
+                    />
+        </RelativePanel>
+        
+                      
+        
+                   
+
+
+
+    </Grid>
+</Page>
+
