@@ -9,6 +9,7 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
+
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -18,6 +19,7 @@
                     Name="HomeButton"
                     FontFamily="Segoe MDL2 Assets"
                     Click="HomeButton_Click"
+                    BorderBrush="Black"
                     RelativePanel.AlignLeftWithPanel="True"
                     />
             <Button Content="&#xE0A6;"
@@ -26,6 +28,27 @@
                     Click="BackButton_Click"
                     RelativePanel.RightOf="HomeButton"
                     />
+            <SearchBox Name="mySearchBox" 
+                       FocusOnKeyboardInput="True"
+                       QuerySubmitted="mySearchBox_QuerySubmitted"
+                       Height="28"  
+                       RelativePanel.AlignHorizontalCenterWithPanel="True"
+                       />
+            <Button Content="&#xE721;"
+                    Name="SearchButton"
+                    FontFamily="Segoe MDL2 Assets"
+                    Click="SearchButton_Click"
+                    RelativePanel.RightOf="mySearchBox" 
+                    />
+            <Button 
+                    Content="&#xE711;"
+                    Name="CancelButton"
+                    FontFamily="Segoe MDL2 Assets"
+                    Click="CancelButton_Click"
+                    RelativePanel.AlignRightWithPanel="True"
+                    />
+
+
         </RelativePanel>
         <SplitView Grid.Row="1" Name="MySplitView"
                    DisplayMode="CompactOverlay"
@@ -33,12 +56,91 @@
                    OpenPaneLength="200">
             <SplitView.Pane>
                 <ListView Name="AlbumListView" IsItemClickEnabled="True"
-                          ItemClick="AlbumListView_Click"/>
-                
+                          ItemClick="AlbumListView_Click" />
+
 
             </SplitView.Pane>
+            <SplitView.Content>
+                <Grid Margin="20,20,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <MediaElement Name="MyMediaElement" AutoPlay="True"/>
+
+                    <TextBlock Name ="CategoryTextBlock" Text="All Songs" FontSize="30"/>
+
+                    <RelativePanel Grid.Row="1" Margin="0,767,0,0" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" Width="280" d:LayoutRounding="Auto">
+                        <RelativePanel.RenderTransform>
+                            <CompositeTransform Rotation="0.251"/>
+                        </RelativePanel.RenderTransform>
+
+                        <Button Content="&#xE892;"
+                    Name="PreviousButton"
+                    FontFamily="Segoe MDL2 Assets"
+                    Click="PreviousButton_Click"
+                    RelativePanel.AlignLeftWithPanel="True"
+                    />
+
+                        <Button Content="&#xE768;"
+                    Name="PlayButton"
+                    FontFamily="Segoe MDL2 Assets"
+                    Click="PlayButton_Click"
+                    RelativePanel.RightOf="PreviousButton"
+                    />
+
+                        <Button Content="&#xE769;"
+                    Name="PauseButton"
+                    FontFamily="Segoe MDL2 Assets"
+                    Click="PauseButton_Click"
+                    RelativePanel.RightOf="PlayButton"
+                    />
+
+                        <Button Content="&#xE893;"
+                    Name="NextButton"
+                    FontFamily="Segoe MDL2 Assets"
+                    Click="NextButton_Click"
+                    RelativePanel.RightOf="PauseButton"
+                    />
+                        <Button Content="&#xE71A;"
+                    Name="StopButton"
+                    FontFamily="Segoe MDL2 Assets"
+                    Click="StopButton_Click"
+                    RelativePanel.RightOf="NextButton"
+                    />
+
+                        <Button Content="&#xE74F;"
+                    Name="MuteButton"
+                    FontFamily="Segoe MDL2 Assets"
+                    Click="MuteButton_Click"
+                    RelativePanel.RightOf="StopButton"
+                    />
+
+                        <Button Content="&#xE767;"
+                    Name="VolumeButton"
+                    FontFamily="Segoe MDL2 Assets"
+                    Click="VolumeButton_Click"
+                    RelativePanel.RightOf="MuteButton"
+                    />
+
+                        <Button Content="&#xE738;"
+                    Name="RemoveButton"
+                    FontFamily="Segoe MDL2 Assets"
+                    Click="RemoveButton_Click"
+                    RelativePanel.RightOf="VolumeButton"
+                    />
+
+                    </RelativePanel>
+
+
+
+
+                </Grid>
+
+
+
+            </SplitView.Content>
         </SplitView>
-        
-        
+
     </Grid>
 </Page>

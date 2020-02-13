@@ -1,0 +1,14 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/obj/ARM64
+/.vs
+/obj/ARM/Debug/App.g.cs.backup
+/obj/x86/Release
+/obj/x86/Debug
+/obj/ARM/Release
+/obj/x64/Debug
+/obj/x64/Release
+/obj/ARM/Debug
+/Team1MusicPlayer.csproj.user
