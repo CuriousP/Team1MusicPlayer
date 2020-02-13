@@ -56,7 +56,7 @@
                    OpenPaneLength="200">
             <SplitView.Pane>
                 <ListView Name="AlbumListView" IsItemClickEnabled="True"
-                          ItemClick="AlbumListView_Click" />
+                          ItemClick="AlbumListView_ItemClick" />
 
 
             </SplitView.Pane>
@@ -70,10 +70,7 @@
 
                     <TextBlock Name ="CategoryTextBlock" Text="All Songs" FontSize="30"/>
 
-                    <RelativePanel Grid.Row="1" Margin="0,767,0,0" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" Width="280" d:LayoutRounding="Auto">
-                        <RelativePanel.RenderTransform>
-                            <CompositeTransform Rotation="0.251"/>
-                        </RelativePanel.RenderTransform>
+                    <RelativePanel Grid.Row="1" Margin="20,20,0,0" HorizontalAlignment="Center" >
 
                         <Button Content="&#xE892;"
                     Name="PreviousButton"
