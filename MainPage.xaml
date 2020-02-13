@@ -17,7 +17,7 @@
             <Button Content="&#xE80F;"
                     Name="HomeButton"
                     FontFamily="Segoe MDL2 Assets"
-                    Click="_Click"
+                    Click="HomeButton_Click"
                     RelativePanel.AlignLeftWithPanel="True"
                     />
             <Button Content="&#xE0A6;"
