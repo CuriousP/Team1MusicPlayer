@@ -12,3 +12,8 @@
 /obj/x64/Release
 /obj/ARM/Debug
 /Team1MusicPlayer.csproj.user
+/obj/project.assets.json
+/obj/Team1MusicPlayer.csproj.nuget.cache
+/obj/Team1MusicPlayer.csproj.nuget.dgspec.json
+/obj/Team1MusicPlayer.csproj.nuget.g.props
+/obj/Team1MusicPlayer.csproj.nuget.g.targets
