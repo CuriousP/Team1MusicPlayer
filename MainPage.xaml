@@ -34,19 +34,7 @@
                        Height="28"  
                        RelativePanel.AlignHorizontalCenterWithPanel="True"
                        />
-            <Button Content="&#xE721;"
-                    Name="SearchButton"
-                    FontFamily="Segoe MDL2 Assets"
-                    Click="SearchButton_Click"
-                    RelativePanel.RightOf="mySearchBox" 
-                    />
-            <Button 
-                    Content="&#xE711;"
-                    Name="CancelButton"
-                    FontFamily="Segoe MDL2 Assets"
-                    Click="CancelButton_Click"
-                    RelativePanel.AlignRightWithPanel="True"
-                    />
+            
 
 
         </RelativePanel>
