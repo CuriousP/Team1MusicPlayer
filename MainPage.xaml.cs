@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Team1MusicPlayer.Model;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Media.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -22,9 +25,13 @@ namespace Team1MusicPlayer
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        private ObservableCollection<Song> songs;
+
         public MainPage()
         {
             this.InitializeComponent();
+            songs = new ObservableCollection<Song>();
+            SongManager.GetAllSongs(songs);
         }
 
         private void HomeButton_Click(object sender, RoutedEventArgs e)
@@ -36,15 +43,25 @@ namespace Team1MusicPlayer
         {
 
         }
+        private void SongListView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            var song = (Song)e.ClickedItem;
 
+            Uri pathUri = new Uri("ms-appx:///Assets/AudioFile/" + song.AudioFile);
+            SongPlayer.Source = MediaSource.CreateFromUri(pathUri);
+
+        }
+        private void AlbumListView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+
+        }
         private void mySearchBox_QuerySubmitted(SearchBox sender, SearchBoxQuerySubmittedEventArgs args)
         {
 
         }
 
-        private void AlbumListView_ItemClick(object sender, ItemClickEventArgs e)
-        {
+       
 
-        }
+        
     }
 }

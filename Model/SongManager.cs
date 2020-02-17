@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,7 +9,7 @@ namespace Team1MusicPlayer.Model
 {
     public static class SongManager
     {
-        private static List<Song> allSongs()
+        private static List<Song> getSongs()
         {
             var songs = new List<Song>();
 
@@ -22,8 +23,12 @@ namespace Team1MusicPlayer.Model
             songs.Add(new Song("Rasaali", "Rasaali.mp3", album2));
 
             return songs;
-
         }
-        
+        public static void GetAllSongs(ObservableCollection<Song> songs)
+        {
+            var allSongs = getSongs();
+            songs.Clear();
+            allSongs.ForEach(s => songs.Add(s));
+        }
     }
 }
