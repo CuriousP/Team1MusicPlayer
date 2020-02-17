@@ -41,7 +41,7 @@ namespace Team1MusicPlayer
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-
+            SongManager.GetAllSongs(songs);
         }
         private void SongListView_ItemClick(object sender, ItemClickEventArgs e)
         {
@@ -57,7 +57,7 @@ namespace Team1MusicPlayer
         }
         private void mySearchBox_QuerySubmitted(SearchBox sender, SearchBoxQuerySubmittedEventArgs args)
         {
-
+            SongManager.SearchSongByName(songs, mySearchBox.QueryText);
         }
 
        

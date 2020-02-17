@@ -33,6 +33,7 @@
                        QuerySubmitted="mySearchBox_QuerySubmitted"
                        Height="28" 
                        Width="340"
+                       SearchHistoryEnabled="False"
                        RelativePanel.RightOf="BackButton"
                        />
         </RelativePanel>
