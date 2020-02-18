@@ -15,7 +15,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-
+using Shell32;
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
 namespace Team1MusicPlayer
@@ -32,6 +32,8 @@ namespace Team1MusicPlayer
             this.InitializeComponent();
             songs = new ObservableCollection<Song>();
             SongManager.GetAllSongs(songs);
+
+           
         }
 
         private void HomeButton_Click(object sender, RoutedEventArgs e)

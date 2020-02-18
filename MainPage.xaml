@@ -62,33 +62,47 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <TextBlock  Name ="SongTextBlock" Text="All Songs" FontSize="30"/>
-
-                    <GridView Grid.Row="1" Name="SongListView" IsItemClickEnabled="True" 
+                    <TextBlock Grid.Row="0" Name ="SongTextBlock" Text="All Songs" FontSize="30"/>
+                    
+                    
+                    
+                    <ListView Grid.Row="1" Name="SongListView" IsItemClickEnabled="True" 
                                ItemsSource="{x:Bind songs}"
                               ItemClick="SongListView_ItemClick">
 
-                       <GridView.ItemTemplate>               
+                       <ListView.ItemTemplate>               
                             
                             <DataTemplate x:DataType="data:Song">
-                                <Grid >
+                                <Grid>
                                     <Image Name="MyImage" HorizontalAlignment="Stretch" Height="100" Width="80" Source="{x:Bind Album.ImageFile}"  />
-                                    <StackPanel  Orientation="Horizontal" >
-                                    <TextBlock
+                                    <StackPanel  Grid.Row="2"  Orientation="Horizontal" >
+                                        <TextBlock 
                                         Text="{x:Bind SongName}"
                                         FontSize="18"
                                         Margin="0,100,0,0"
                                         VerticalAlignment="Center"/>
-                                    
 
-                                </StackPanel>
+                                        <TextBlock 
+                                         Text="{x:Bind Album.AlbumName}" 
+                                         FontSize="18"
+                                         Margin="10,100,0,0"
+                                         VerticalAlignment="Center"/>
+
+                                        <TextBlock 
+                                         Text="{x:Bind Length}" 
+                                         FontSize="18"
+                                         Margin="10,100,0,0"
+                                         VerticalAlignment="Center"/>
+                                        
+
+                                    </StackPanel>
                                 </Grid>
                             </DataTemplate>
-                        </GridView.ItemTemplate>
-                    </GridView>
+                        </ListView.ItemTemplate>
+                    </ListView>
 
                     <MediaPlayerElement Grid.Row="2" x:Name="SongPlayer"
-                                        Width="200"
+                                        Width="400"
                                         AutoPlay="True"
                                         AreTransportControlsEnabled="True"/>
                 </Grid>

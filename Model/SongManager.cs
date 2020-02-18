@@ -16,11 +16,11 @@ namespace Team1MusicPlayer.Model
             Album album1 = new Album("Alai", $"Assets/ImageFile/Alai.png");
             Album album2 = new Album("AEM", $"Assets/ImageFile/AEM.png");
         
-            songs.Add(new Song("Alaipayuthey", "Alaipayuthey-Kanna.mp3", album1));
-            songs.Add(new Song("Endrendrum", "Endrendrum-Punnagai.mp3",album1));
+            songs.Add(new Song("Alaipayuthey", "Alaipayuthey-Kanna.mp3", album1, new TimeSpan(0,3,41)));
+            songs.Add(new Song("Endrendrum", "Endrendrum-Punnagai.mp3",album1, new TimeSpan(0,3,57)));
 
-            songs.Add(new Song("IdhuNaal", "IdhuNaal.mp3", album2));
-            songs.Add(new Song("Rasaali", "Rasaali.mp3", album2));
+            songs.Add(new Song("IdhuNaal", "IdhuNaal.mp3", album2, new TimeSpan(0,3,39)));
+            songs.Add(new Song("Rasaali", "Rasaali.mp3", album2, new TimeSpan(0,5,38)));
 
             return songs;
         }
