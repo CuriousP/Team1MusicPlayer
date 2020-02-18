@@ -11,6 +11,7 @@ namespace Team1MusicPlayer.Model
     {
         private static List<Song> getSongs()
         {
+            //Create list of songs 
             var songs = new List<Song>();
 
             Album album1 = new Album("Alai", "Alai.png");
