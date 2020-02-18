@@ -49,7 +49,7 @@
                    CompactPaneLength="45"
                    OpenPaneLength="200" Background="Beige">
             <SplitView.Pane>
-                <ListView Name="AlbumListView" IsItemClickEnabled="True"
+                <ListView Background="BlanchedAlmond" Name="AlbumListView" IsItemClickEnabled="True"
                           ItemClick="AlbumListView_ItemClick" >
                 </ListView>
                 
@@ -62,7 +62,7 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <TextBlock  Name ="SongTextBlock" Text="All Songs" FontSize="30"/>
+                    <TextBlock Name ="SongTextBlock" Text="All Songs" FontSize="30"/>
 
                     <GridView Grid.Row="1" Name="SongListView" IsItemClickEnabled="True" 
                                ItemsSource="{x:Bind songs}"
