@@ -15,7 +15,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-
+using Shell32;
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
 namespace Team1MusicPlayer
@@ -32,16 +32,18 @@ namespace Team1MusicPlayer
             this.InitializeComponent();
             songs = new ObservableCollection<Song>();
             SongManager.GetAllSongs(songs);
+
+           
         }
 
         private void HomeButton_Click(object sender, RoutedEventArgs e)
         {
-
+            MySplitView.IsPaneOpen = !MySplitView.IsPaneOpen;
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-
+            SongManager.GetAllSongs(songs);
         }
         private void SongListView_ItemClick(object sender, ItemClickEventArgs e)
         {
@@ -49,19 +51,27 @@ namespace Team1MusicPlayer
 
             Uri pathUri = new Uri("ms-appx:///Assets/AudioFile/" + song.AudioFile);
             SongPlayer.Source = MediaSource.CreateFromUri(pathUri);
+            
+
 
         }
         private void AlbumListView_ItemClick(object sender, ItemClickEventArgs e)
         {
+            var image = (Album)e.ClickedItem;
+
+            Uri pathUri = new Uri("ms-appx:///Assets/ImageFile/" + image.AlbumName);
+            SongPlayer.Source = MediaSource.CreateFromUri(pathUri);
 
         }
         private void mySearchBox_QuerySubmitted(SearchBox sender, SearchBoxQuerySubmittedEventArgs args)
         {
-
+            SongManager.SearchSongByName(songs, mySearchBox.QueryText);
         }
 
-       
-
-        
+        private void ClearButton_Click(object sender, RoutedEventArgs e)
+        {
+            mySearchBox.QueryText = string.Empty;
+            SongManager.SearchSongByName(songs, mySearchBox.QueryText);
+        }
     }
 }
