@@ -13,8 +13,8 @@ namespace Team1MusicPlayer.Model
         {
             var songs = new List<Song>();
 
-            Album album1 = new Album("Alai", "Alai.png");
-            Album album2 = new Album("AEM", "AEM.png");
+            Album album1 = new Album("Alai", $"Assets/ImageFile/Alai.png");
+            Album album2 = new Album("AEM", $"Assets/ImageFile/AEM.png");
         
             songs.Add(new Song("Alaipayuthey", "Alaipayuthey-Kanna.mp3", album1));
             songs.Add(new Song("Endrendrum", "Endrendrum-Punnagai.mp3",album1));
