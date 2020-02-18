@@ -38,12 +38,12 @@ namespace Team1MusicPlayer
 
         private void HomeButton_Click(object sender, RoutedEventArgs e)
         {
-
+            MySplitView.IsPaneOpen = !MySplitView.IsPaneOpen;
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-
+            SongManager.GetAllSongs(songs);
         }
         private void SongListView_ItemClick(object sender, ItemClickEventArgs e)
         {
@@ -51,11 +51,17 @@ namespace Team1MusicPlayer
 
             Uri pathUri = new Uri("ms-appx:///Assets/AudioFile/" + song.AudioFile);
             SongPlayer.Source = MediaSource.CreateFromUri(pathUri);
-           
+            
+
+
         }
         private void AlbumListView_ItemClick(object sender, ItemClickEventArgs e)
         {
-           
+            var image = (Album)e.ClickedItem;
+
+            Uri pathUri = new Uri("ms-appx:///Assets/ImageFile/" + image.AlbumName);
+            SongPlayer.Source = MediaSource.CreateFromUri(pathUri);
+
         }
         private void mySearchBox_QuerySubmitted(SearchBox sender, SearchBoxQuerySubmittedEventArgs args)
         {
