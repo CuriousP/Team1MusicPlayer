@@ -35,6 +35,14 @@
                        Width="340"
                        RelativePanel.RightOf="BackButton"
                        />
+            <Button Content="&#xE894;"
+                    Name="ClearButton"
+                    FontFamily="Segoe MDL2 Assets"
+                    Click="ClearButton_Click"
+                    BorderBrush="Black"
+                    RelativePanel.RightOf="mySearchBox"
+                    />
+            
         </RelativePanel>
         <SplitView Grid.Row="1" Name="MySplitView"
                    DisplayMode="CompactOverlay"
@@ -54,25 +62,33 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <TextBlock Name ="SongTextBlock" Text="All Songs" FontSize="30"/>
-                    <ListView Grid.Row="1" Name="SongListView" IsItemClickEnabled="True"
+                    <TextBlock  Name ="SongTextBlock" Text="All Songs" FontSize="30"/>
+
+                    <GridView Grid.Row="1" Name="SongListView" IsItemClickEnabled="True" 
                                ItemsSource="{x:Bind songs}"
                               ItemClick="SongListView_ItemClick">
-                        <ListView.ItemTemplate>
+
+                       <GridView.ItemTemplate>               
+                            
                             <DataTemplate x:DataType="data:Song">
-                                <StackPanel Orientation="Horizontal">
+                                <Grid >
+                                    <Image Name="MyImage" HorizontalAlignment="Stretch" Height="100" Width="80" Source="{x:Bind Album.ImageFile}"  />
+                                    <StackPanel  Orientation="Horizontal" >
                                     <TextBlock
                                         Text="{x:Bind SongName}"
                                         FontSize="18"
-                                        Margin="10,0,0,0"
+                                        Margin="0,100,0,0"
                                         VerticalAlignment="Center"/>
+                                    
+
                                 </StackPanel>
+                                </Grid>
                             </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
+                        </GridView.ItemTemplate>
+                    </GridView>
 
                     <MediaPlayerElement Grid.Row="2" x:Name="SongPlayer"
-                                        Width="400"
+                                        Width="200"
                                         AutoPlay="True"
                                         AreTransportControlsEnabled="True"/>
                 </Grid>
