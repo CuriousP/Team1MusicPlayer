@@ -9,7 +9,7 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+    <Grid Background="BlanchedAlmond" BorderBrush="Blue">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -47,7 +47,7 @@
         <SplitView Grid.Row="1" Name="MySplitView"
                    DisplayMode="CompactOverlay"
                    CompactPaneLength="45"
-                   OpenPaneLength="200">
+                   OpenPaneLength="200" Background="Beige">
             <SplitView.Pane>
                 <ListView Name="AlbumListView" IsItemClickEnabled="True"
                           ItemClick="AlbumListView_ItemClick" >
@@ -71,7 +71,7 @@
                        <GridView.ItemTemplate>               
                             
                             <DataTemplate x:DataType="data:Song">
-                                <Grid >
+                                <Grid Background="BlanchedAlmond">
                                     <Image Name="MyImage" HorizontalAlignment="Stretch" Height="100" Width="80" Source="{x:Bind Album.ImageFile}"  />
                                     <StackPanel  Orientation="Horizontal" >
                                     <TextBlock
@@ -87,7 +87,7 @@
                         </GridView.ItemTemplate>
                     </GridView>
 
-                    <MediaPlayerElement Grid.Row="2" x:Name="SongPlayer"
+                    <MediaPlayerElement Background="BlanchedAlmond" Grid.Row="2" x:Name="SongPlayer"
                                         Width="200"
                                         AutoPlay="True"
                                         AreTransportControlsEnabled="True"/>
