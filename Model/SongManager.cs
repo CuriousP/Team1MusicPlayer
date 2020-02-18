@@ -13,8 +13,8 @@ namespace Team1MusicPlayer.Model
         {
             var songs = new List<Song>();
 
-            Album album1 = new Album("Alai", "Alai.png");
-            Album album2 = new Album("AEM", "AEM.png");
+            Album album1 = new Album("Alai", $"Assets/ImageFile/Alai.png");
+            Album album2 = new Album("AEM", $"Assets/ImageFile/AEM.png");
         
             songs.Add(new Song("Alaipayuthey", "Alaipayuthey-Kanna.mp3", album1));
             songs.Add(new Song("Endrendrum", "Endrendrum-Punnagai.mp3",album1));
@@ -29,6 +29,14 @@ namespace Team1MusicPlayer.Model
             var allSongs = getSongs();
             songs.Clear();
             allSongs.ForEach(s => songs.Add(s));
+        }
+        public static void SearchSongByName(ObservableCollection<Song> songs, string songName) // Search songs By Name
+        {
+            var allSongs = getSongs();
+            songs.Clear();
+            var filteredSongs = allSongs.Where(s => s.SongName.ToLower().Contains(songName.ToLower())).ToList();
+
+            filteredSongs.ForEach(s => songs.Add(s));
         }
     }
 }
