@@ -34,7 +34,6 @@
                        QuerySubmitted="mySearchBox_QuerySubmitted"
                        Height="28" 
                        Width="340"
-
                        RelativePanel.RightOf="BackButton"
                        />
             <Button Content="&#xE894;"
@@ -52,8 +51,25 @@
                    OpenPaneLength="200" Background="Beige">
             <SplitView.Pane>
                 <ListView Name="AlbumListView" IsItemClickEnabled="True"
+                          ItemsSource="{x:Bind homeItems}"
                           ItemClick="AlbumListView_ItemClick" >
-                </ListView>
+                   
+
+                    
+                            
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="data:HomeItem" >
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="{x:Bind ImageFile}" 
+                                       Height="35" 
+                                       Width="35"
+                                       Margin="-10,10,0,10"
+                                       />
+                                    
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
                 
             </SplitView.Pane>
             
@@ -66,14 +82,7 @@
 
                     <TextBlock Name ="SongTextBlock" Text="All Songs" FontSize="30"/>
                     
-                    <ListView>
-                        <ListView.ItemTemplate>
-                            <DataTemplate x:DataType="data:Album">
-                                <Image Name="MyImage" HorizontalAlignment="Stretch" Height="100" Width="80" Source="{x:Bind ImageFile}"  />
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-
+                    
                     
 
                     <ListView Grid.Row="1" Name="SongListView" IsItemClickEnabled="True" 

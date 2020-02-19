@@ -123,6 +123,7 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\Album.cs" />
+    <Compile Include="Model\HomeItem.cs" />
     <Compile Include="Model\Song.cs" />
     <Compile Include="Model\SongManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

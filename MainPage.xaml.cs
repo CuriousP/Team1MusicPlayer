@@ -26,19 +26,25 @@ namespace Team1MusicPlayer
     public sealed partial class MainPage : Page
     {
         private ObservableCollection<Song> songs;
-
+        private List<HomeItem> homeItems;
         public MainPage()
         {
             this.InitializeComponent();
             songs = new ObservableCollection<Song>();
             SongManager.GetAllSongs(songs);
+            homeItems = new List<HomeItem>();
 
-           
+            homeItems.Add(new HomeItem { ImageFile = $"Assets/ImageFile/Alai.png" });
+            homeItems.Add(new HomeItem { ImageFile = $"Assets/ImageFile/AEM.png" });
+
+
+
         }
 
         private void HomeButton_Click(object sender, RoutedEventArgs e)
         {
-            MySplitView.IsPaneOpen = !MySplitView.IsPaneOpen;
+            mySearchBox.QueryText = string.Empty;
+            SongManager.GetAllSongs(songs);
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
@@ -57,21 +63,23 @@ namespace Team1MusicPlayer
         }
         private void AlbumListView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            var image = (Album)e.ClickedItem;
+            var homeItem = (HomeItem)e.ClickedItem;
 
-            Uri pathUri = new Uri("ms-appx:///Assets/ImageFile/" + image.AlbumName);
-            SongPlayer.Source = MediaSource.CreateFromUri(pathUri);
+            SongManager.GetAllSongs(songs);
+            BackButton.Visibility = Visibility.Visible;
 
         }
         private void mySearchBox_QuerySubmitted(SearchBox sender, SearchBoxQuerySubmittedEventArgs args)
         {
-            SongManager.SearchSongByName(songs, mySearchBox.QueryText);
+            SongManager.SearchSongbyName(songs, mySearchBox.QueryText);
         }
 
         private void ClearButton_Click(object sender, RoutedEventArgs e)
         {
             mySearchBox.QueryText = string.Empty;
-            SongManager.SearchSongByName(songs, mySearchBox.QueryText);
+            SongManager.SearchSongbyName(songs, mySearchBox.QueryText);
         }
+
+        
     }
 }
