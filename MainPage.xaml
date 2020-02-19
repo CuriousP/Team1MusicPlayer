@@ -47,7 +47,7 @@
         </RelativePanel>
         <SplitView Grid.Row="1" Name="MySplitView"
                    DisplayMode="CompactOverlay"
-                   CompactPaneLength="45"
+                   CompactPaneLength="80"
                    OpenPaneLength="200">
             <SplitView.Pane>
                 <ListView Name="AlbumListView" IsItemClickEnabled="True"
@@ -84,6 +84,12 @@
                                          FontSize="18"
                                          Margin="10,0,0,0"
                                          VerticalAlignment="Center"/>
+                                    <Button Content="&#xEB51;"
+                                        Name="Favorite"
+                                        FontFamily="Segoe MDL2 Assets"
+                                        Click="FavoriteButton_Click"
+                                        HorizontalContentAlignment="Right"
+                                     />
 
                                 </StackPanel>
                             </DataTemplate>
