@@ -9,7 +9,7 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid  Background = "BlanchedAlmond" BorderBrush = "Black">
+    <Grid  Background = "White" BorderBrush = "Black">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -17,45 +17,69 @@
         </Grid.RowDefinitions>
         <RelativePanel>
             <Button Content="&#xE80F;"
+                    BorderThickness="2"
                     Name="HomeButton"
                     FontFamily="Segoe MDL2 Assets"
                     Click="HomeButton_Click"
                     BorderBrush="Black"
-                    RelativePanel.AlignLeftWithPanel="True"
+                    RelativePanel.AlignLeftWithPanel="True" Background="#336C99E5"
                     />
             <Button Content="&#xE0A6;"
                     Name="BackButton"
                     FontFamily="Segoe MDL2 Assets"
+                    BorderThickness="2"
+                    BorderBrush="Black"
                     Click="BackButton_Click"
                     RelativePanel.RightOf="HomeButton"
+                    Background="#336C99E5"
                     />
-            <SearchBox Name="mySearchBox" 
+            <SearchBox Name="mySearchBox"
+                       BorderThickness="2"
                        FocusOnKeyboardInput="True"
                        QuerySubmitted="mySearchBox_QuerySubmitted"
                        Height="28" 
                        Width="340"
                        SearchHistoryEnabled="False"
-                       RelativePanel.RightOf="BackButton"
+                       RelativePanel.RightOf="BackButton" PlaceholderText="Type here to search" 
                        />
             <Button Content="&#xE894;"
+                    BorderThickness="2"
                     Name="ClearButton"
                     FontFamily="Segoe MDL2 Assets"
                     Click="ClearButton_Click"
                     BorderBrush="Black"
                     RelativePanel.RightOf="mySearchBox"
+                    Background="#336C99E5"
                     />
         </RelativePanel>
         <SplitView Grid.Row="1" Name="MySplitView"
+                   PaneBackground="Khaki"
                    DisplayMode="CompactOverlay"
-                   CompactPaneLength="80"
-                   OpenPaneLength="200">
+                   CompactPaneLength="100"
+                   OpenPaneLength="200" Background="White">
             <SplitView.Pane>
                 <ListView Name="AlbumListView" IsItemClickEnabled="True"
-                          ItemClick="AlbumListView_ItemClick" >
+                          ItemClick="AlbumListView_ItemClick">
+
+                    <Button Content="Album1" 
+                    Click="Album1Button_Click"
+                    BorderBrush="Black"
+                    Background="#336C99E5"/>
+
+                    <Button Content="Album2"                   
+                    Click="Album2Button_Click"
+                    BorderBrush="Black"
+                     Background="#336C99E5"/>
+                    
+                    <Button Content="Favroites" 
+                    Click="FavroritePlaylist_Click"
+                    BorderBrush="Black" 
+                    Background="#336C99E5" />
+
                 </ListView>
             </SplitView.Pane>
             <SplitView.Content>
-                <Grid Margin="20,20,0,0">
+                <Grid Margin="20,20,0,0" BorderThickness="2">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
@@ -70,6 +94,7 @@
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock
                                         Text="{x:Bind SongName}"
+                                        TextWrapping="Wrap"
                                         FontSize="18"
                                         Margin="10,0,0,0"
                                         VerticalAlignment="Center"/>
@@ -84,18 +109,22 @@
                                          FontSize="18"
                                          Margin="10,0,0,0"
                                          VerticalAlignment="Center"/>
-                                    <Button Content="&#xEB51;"
+                                    <Button Content="&#xEB52;"
                                         Name="Favorite"
+                                        Margin="15,0,0,0"
+                                        Foreground="Red"
                                         FontFamily="Segoe MDL2 Assets"
+                                        BorderThickness="1" 
+                                        Background="White"    
                                         Click="FavoriteButton_Click"
-                                        HorizontalContentAlignment="Right"
+                                        HorizontalContentAlignment="Center"
                                      />
 
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
-                    <MediaPlayerElement Background="BlanchedAlmond" Grid.Row="2" x:Name="SongPlayer"
+                    <MediaPlayerElement Background="Beige" Grid.Row="2" x:Name="SongPlayer"
                                         Width="400"
                                         AutoPlay="True"
                                         AreTransportControlsEnabled="True"/>

@@ -38,5 +38,14 @@ namespace Team1MusicPlayer.Model
 
             filteredSongs.ForEach(s => songs.Add(s));
         }
+
+        public static void FilterSongByAlbumName(ObservableCollection<Song> songs, string albumName)
+        {
+            var allSongs = getSongs();
+            songs.Clear();
+            var filteredSongs = allSongs.Where(s => s.Album.AlbumName.ToLower().Contains(albumName.ToLower())).ToList();
+
+            filteredSongs.ForEach(s => songs.Add(s));
+        }
     }
 }
