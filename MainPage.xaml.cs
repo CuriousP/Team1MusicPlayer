@@ -26,7 +26,6 @@ namespace Team1MusicPlayer
     public sealed partial class MainPage : Page
     {
         private ObservableCollection<Song> songs;
-
         public MainPage()
         {
             this.InitializeComponent();
@@ -68,6 +67,12 @@ namespace Team1MusicPlayer
         {
             mySearchBox.QueryText = string.Empty;
             SongManager.SearchSongByName(songs, mySearchBox.QueryText);
+        }
+
+        private void FavoriteButton_Click(object sender, RoutedEventArgs e)
+        {
+            
+
         }
     }
 }
