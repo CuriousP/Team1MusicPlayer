@@ -31,11 +31,20 @@ namespace Team1MusicPlayer.Model
             songs.Clear();
             allSongs.ForEach(s => songs.Add(s));
         }
-        public static void SearchSongByName(ObservableCollection<Song> songs, string songName) // Search songs By Name
+        public static void SearchSongByName(ObservableCollection<Song> songs, string songName) 
         {
             var allSongs = getSongs();
             songs.Clear();
             var filteredSongs = allSongs.Where(s => s.SongName.ToLower().Contains(songName.ToLower())).ToList();
+
+            filteredSongs.ForEach(s => songs.Add(s));
+        }
+
+        public static void FilterSongByAlbumName(ObservableCollection<Song> songs, string albumName) 
+        {
+            var allSongs = getSongs();
+            songs.Clear();
+            var filteredSongs = allSongs.Where(s => s.Album.AlbumName.ToLower().Contains(albumName.ToLower())).ToList();
 
             filteredSongs.ForEach(s => songs.Add(s));
         }

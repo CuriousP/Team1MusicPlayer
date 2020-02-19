@@ -45,8 +45,17 @@
             <SplitView.Pane>
                 <ListView Name="AlbumListView" IsItemClickEnabled="True"
                           ItemClick="AlbumListView_ItemClick" >
-                </ListView>
+                <ListView >
+                    <Button Content="Album1"                   
+                    Click="Button_Click"
+                    BorderBrush="Black"                  
+                    />
 
+                    <Button Content="Album2"                   
+                    Click="Button_Click_1"
+                    BorderBrush="Black"                  
+                    />
+                </ListView>
             </SplitView.Pane>
 
             <SplitView.Content>
@@ -55,8 +64,8 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-
-                    <TextBlock Name ="SongTextBlock" Text="All Songs" FontSize="30"/>
+                    
+                    <TextBlock Name ="SongTextBlock" Text="All Songs" FontSize="30" />
                     <ListView Grid.Row="1" Name="SongListView" IsItemClickEnabled="True"
                                ItemsSource="{x:Bind songs}"
                               ItemClick="SongListView_ItemClick">

@@ -57,11 +57,7 @@ namespace Team1MusicPlayer
         }
         private void AlbumListView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            var image = (Album)e.ClickedItem;
-
-            Uri pathUri = new Uri("ms-appx:///Assets/ImageFile/" + image.AlbumName);
-            SongPlayer.Source = MediaSource.CreateFromUri(pathUri);
-
+           
         }
         private void mySearchBox_QuerySubmitted(SearchBox sender, SearchBoxQuerySubmittedEventArgs args)
         {
@@ -72,6 +68,17 @@ namespace Team1MusicPlayer
         {
             mySearchBox.QueryText = string.Empty;
             SongManager.SearchSongByName(songs, mySearchBox.QueryText);
+        }
+
+       
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            SongManager.FilterSongByAlbumName(songs, "alai");
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            SongManager.FilterSongByAlbumName(songs, "AEM");
         }
     }
 }
