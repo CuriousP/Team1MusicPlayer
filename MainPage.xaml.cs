@@ -35,11 +35,13 @@ namespace Team1MusicPlayer
 
         private void HomeButton_Click(object sender, RoutedEventArgs e)
         {
-
+            mySearchBox.QueryText = string.Empty;
+            SongManager.GetAllSongs(songs);
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
+            mySearchBox.QueryText = string.Empty;
             SongManager.GetAllSongs(songs);
         }
         private void SongListView_ItemClick(object sender, ItemClickEventArgs e)
@@ -72,6 +74,20 @@ namespace Team1MusicPlayer
         private void FavoriteButton_Click(object sender, RoutedEventArgs e)
         {
             
+
+        }
+        private void Album1Button_Click(object sender, RoutedEventArgs e)
+        {
+            SongManager.FilterSongByAlbumName(songs, "Album1");
+        }
+
+        private void Album2Button_Click(object sender, RoutedEventArgs e)
+        {
+            SongManager.FilterSongByAlbumName(songs, "Album2");
+        }
+
+        private void FavroritePlaylist_Click(object sender, RoutedEventArgs e)
+        {
 
         }
     }
