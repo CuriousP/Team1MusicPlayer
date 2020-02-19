@@ -43,8 +43,6 @@
                    CompactPaneLength="45"
                    OpenPaneLength="200">
             <SplitView.Pane>
-                <ListView Name="AlbumListView" IsItemClickEnabled="True"
-                          ItemClick="AlbumListView_ItemClick" >
                 <ListView >
                     <Button Content="Album1"                   
                     Click="Button_Click"
