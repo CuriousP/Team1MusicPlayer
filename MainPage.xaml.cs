@@ -85,10 +85,6 @@ namespace Team1MusicPlayer
         {
             SongManager.FilterSongByAlbumName(songs, "Album2");
         }
-
-        private void FavroritePlaylist_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+        
     }
 }
