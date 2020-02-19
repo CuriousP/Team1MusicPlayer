@@ -36,7 +36,7 @@ namespace Team1MusicPlayer
            
         }
 
-        private void HomeButton_Click(object sender, RoutedEventArgs e)
+        private void HomeButton_Click(object sender, RoutedEventArgs e) //Split View
         {
             MySplitView.IsPaneOpen = !MySplitView.IsPaneOpen;
         }
