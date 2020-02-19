@@ -9,8 +9,7 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid Background = "BlanchedAlmond" BorderBrush = "Black">
-        
+    <Grid Background = "BlanchedAlmond" BorderBrush = "Black">        
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -34,29 +33,22 @@
                        QuerySubmitted="mySearchBox_QuerySubmitted"
                        Height="28" 
                        Width="340"
-
+                       SearchHistoryEnabled="False"
                        RelativePanel.RightOf="BackButton"
                        />
-            <Button Content="&#xE894;"
-                    Name="ClearButton"
-                    FontFamily="Segoe MDL2 Assets"
-                    Click="ClearButton_Click"
-                    BorderBrush="Black"
-                    RelativePanel.RightOf="mySearchBox"
-                    />
-            
+                        
         </RelativePanel>
         <SplitView Grid.Row="1" Name="MySplitView"
                    DisplayMode="CompactOverlay"
                    CompactPaneLength="45"
-                   OpenPaneLength="200" Background="Beige">
+                   OpenPaneLength="200">
             <SplitView.Pane>
                 <ListView Name="AlbumListView" IsItemClickEnabled="True"
                           ItemClick="AlbumListView_ItemClick" >
                 </ListView>
-                
+
             </SplitView.Pane>
-            
+
             <SplitView.Content>
                 <Grid Margin="20,20,0,0">
                     <Grid.RowDefinitions>
@@ -65,59 +57,28 @@
                     </Grid.RowDefinitions>
 
                     <TextBlock Name ="SongTextBlock" Text="All Songs" FontSize="30"/>
-                    
-                    <ListView>
-                        <ListView.ItemTemplate>
-                            <DataTemplate x:DataType="data:Album">
-                                <Image Name="MyImage" HorizontalAlignment="Stretch" Height="100" Width="80" Source="{x:Bind ImageFile}"  />
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-
-                    
-
-                    <ListView Grid.Row="1" Name="SongListView" IsItemClickEnabled="True" 
+                    <ListView Grid.Row="1" Name="SongListView" IsItemClickEnabled="True"
                                ItemsSource="{x:Bind songs}"
                               ItemClick="SongListView_ItemClick">
-
-                       <ListView.ItemTemplate>               
-                            
+                        <ListView.ItemTemplate>
                             <DataTemplate x:DataType="data:Song">
-                                
-                                   
-                                    <StackPanel  Orientation="Horizontal" >
-                                        <TextBlock 
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock
                                         Text="{x:Bind SongName}"
                                         FontSize="18"
                                         Margin="10,0,0,0"
                                         VerticalAlignment="Center"/>
-
-                                        <TextBlock 
-                                         Text="{x:Bind Album.AlbumName}" 
-                                         FontSize="18"
-                                         Margin="10,0,0,0"
-                                         VerticalAlignment="Center"/>
-
-                                        <TextBlock 
-                                         Text="{x:Bind Length}" 
-                                         FontSize="18"
-                                         Margin="10,0,0,0"
-                                         VerticalAlignment="Center"/>
-                                        
-
-                                    </StackPanel>
-                               
+                                </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
 
-                    <MediaPlayerElement Background="BlanchedAlmond" Grid.Row="2" x:Name="SongPlayer"
+                    <MediaPlayerElement Grid.Row="2" x:Name="SongPlayer"
                                         Width="400"
                                         AutoPlay="True"
                                         AreTransportControlsEnabled="True"/>
                 </Grid>
             </SplitView.Content>
         </SplitView>
-
     </Grid>
 </Page>
