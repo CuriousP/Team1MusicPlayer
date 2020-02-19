@@ -13,14 +13,14 @@ namespace Team1MusicPlayer.Model
         {
             var songs = new List<Song>();
 
-            Album album1 = new Album("Alai", "Alai.png");
-            Album album2 = new Album("AEM", "AEM.png");
+            Album album1 = new Album("Alai", $"Assets/ImageFile/Alai.png");
+            Album album2 = new Album("AEM", $"Assets/ImageFile/AEM.png");
         
-            songs.Add(new Song("Alaipayuthey", "Alaipayuthey-Kanna.mp3", album1));
-            songs.Add(new Song("Endrendrum", "Endrendrum-Punnagai.mp3",album1));
+            songs.Add(new Song("Alaipayuthey", "Alaipayuthey-Kanna.mp3", album1, new TimeSpan(0,3,41)));
+            songs.Add(new Song("Endrendrum", "Endrendrum-Punnagai.mp3",album1, new TimeSpan(0,3,57)));
 
-            songs.Add(new Song("IdhuNaal", "IdhuNaal.mp3", album2));
-            songs.Add(new Song("Rasaali", "Rasaali.mp3", album2));
+            songs.Add(new Song("IdhuNaal", "IdhuNaal.mp3", album2,new TimeSpan(0,3,39)));
+            songs.Add(new Song("Rasaali", "Rasaali.mp3", album2, new TimeSpan(0,5,38)));
 
             return songs;
         }
@@ -29,6 +29,14 @@ namespace Team1MusicPlayer.Model
             var allSongs = getSongs();
             songs.Clear();
             allSongs.ForEach(s => songs.Add(s));
+        }
+        public static void SearchSongByName(ObservableCollection<Song> songs, string songName) // Search songs By Name
+        {
+            var allSongs = getSongs();
+            songs.Clear();
+            var filteredSongs = allSongs.Where(s => s.SongName.ToLower().Contains(songName.ToLower())).ToList();
+
+            filteredSongs.ForEach(s => songs.Add(s));
         }
     }
 }

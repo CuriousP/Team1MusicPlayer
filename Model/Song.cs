@@ -12,12 +12,14 @@ namespace Team1MusicPlayer.Model
         public string AudioFile { get; set; }
         public TimeSpan Length { get; set; }
         public Album Album { get; set; }
-
-        public Song(string songName,string audioFile,Album album)
+        public Song(string songName, string audioFile, Album album, TimeSpan length)
         {
             SongName = songName;
             AudioFile = audioFile;
             Album = album;
+            Length = length;
         }
     }
 }
+
+

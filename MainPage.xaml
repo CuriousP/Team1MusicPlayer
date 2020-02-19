@@ -9,7 +9,7 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+    <Grid  Background = "BlanchedAlmond" BorderBrush = "Black">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -34,8 +34,16 @@
                        QuerySubmitted="mySearchBox_QuerySubmitted"
                        Height="28" 
                        Width="340"
+                       SearchHistoryEnabled="False"
                        RelativePanel.RightOf="BackButton"
                        />
+            <Button Content="&#xE894;"
+                    Name="ClearButton"
+                    FontFamily="Segoe MDL2 Assets"
+                    Click="ClearButton_Click"
+                    BorderBrush="Black"
+                    RelativePanel.RightOf="mySearchBox"
+                    />
         </RelativePanel>
         <SplitView Grid.Row="1" Name="MySplitView"
                    DisplayMode="CompactOverlay"
@@ -45,9 +53,7 @@
                 <ListView Name="AlbumListView" IsItemClickEnabled="True"
                           ItemClick="AlbumListView_ItemClick" >
                 </ListView>
-                
             </SplitView.Pane>
-            
             <SplitView.Content>
                 <Grid Margin="20,20,0,0">
                     <Grid.RowDefinitions>
@@ -67,12 +73,23 @@
                                         FontSize="18"
                                         Margin="10,0,0,0"
                                         VerticalAlignment="Center"/>
+                                    <TextBlock 
+                                         Text="{x:Bind Album.AlbumName}" 
+                                         FontSize="18"
+                                         Margin="10,0,0,0"
+                                         VerticalAlignment="Center"/>
+
+                                    <TextBlock 
+                                         Text="{x:Bind Length}" 
+                                         FontSize="18"
+                                         Margin="10,0,0,0"
+                                         VerticalAlignment="Center"/>
+
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
-
-                    <MediaPlayerElement Grid.Row="2" x:Name="SongPlayer"
+                    <MediaPlayerElement Background="BlanchedAlmond" Grid.Row="2" x:Name="SongPlayer"
                                         Width="400"
                                         AutoPlay="True"
                                         AreTransportControlsEnabled="True"/>
