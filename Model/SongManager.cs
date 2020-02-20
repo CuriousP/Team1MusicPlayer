@@ -9,6 +9,8 @@ namespace Team1MusicPlayer.Model
 {
     public static class SongManager
     {
+        private static List<Song> favoriteSongs = new List<Song>();
+
         private static List<Song> getSongs()
         {
             var songs = new List<Song>();
@@ -21,7 +23,6 @@ namespace Team1MusicPlayer.Model
 
             songs.Add(new Song("IdhuNaal", "IdhuNaal.mp3", album2,new TimeSpan(0,3,39)));
             songs.Add(new Song("Rasaali", "Rasaali.mp3", album2, new TimeSpan(0,5,38)));
-
             return songs;
         }
         public static void GetAllSongs(ObservableCollection<Song> songs)
@@ -39,6 +40,23 @@ namespace Team1MusicPlayer.Model
             filteredSongs.ForEach(s => songs.Add(s));
         }
 
+        // Creating user playlist
+
+        public static void AddFavoriteSong(Song song)
+        {
+            Song existingSong = SongManager.favoriteSongs.FirstOrDefault(s => s.SongName.Equals(song.SongName));
+            if (existingSong == null)
+            {
+                SongManager.favoriteSongs.Add(song);
+            }            
+        }
+
+        public static void GetFavoriteSongs(ObservableCollection<Song> songs)
+        {
+            songs.Clear();
+            SongManager.favoriteSongs.ForEach(s => songs.Add(s));
+        }
+
         public static void FilterSongByAlbumName(ObservableCollection<Song> songs, string albumName)
         {
             var allSongs = getSongs();
@@ -48,6 +66,6 @@ namespace Team1MusicPlayer.Model
             filteredSongs.ForEach(s => songs.Add(s));
         }
 
-       
+
     }
 }

@@ -73,8 +73,9 @@ namespace Team1MusicPlayer
 
         private void FavoriteButton_Click(object sender, RoutedEventArgs e)
         {
-            
-
+            var button = sender as Button;
+            Song favSong = (Song)button.DataContext;
+            SongManager.AddFavoriteSong(favSong);
         }
         private void Album1Button_Click(object sender, RoutedEventArgs e)
         {
@@ -86,9 +87,9 @@ namespace Team1MusicPlayer
             SongManager.FilterSongByAlbumName(songs, "AEM");
         }
 
-        private void FavroritePlaylist_Click(object sender, RoutedEventArgs e)
+        private void FavoritePlaylist_Click(object sender, RoutedEventArgs e)
         {
-
+            SongManager.GetFavoriteSongs(songs);
         }
     }
 }
