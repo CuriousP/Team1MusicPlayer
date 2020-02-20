@@ -78,12 +78,12 @@ namespace Team1MusicPlayer
         }
         private void Album1Button_Click(object sender, RoutedEventArgs e)
         {
-            SongManager.FilterSongByAlbumName(songs, "Album1");
+            SongManager.FilterSongByAlbumName(songs, "alai");
         }
 
         private void Album2Button_Click(object sender, RoutedEventArgs e)
         {
-            SongManager.FilterSongByAlbumName(songs, "Album2");
+            SongManager.FilterSongByAlbumName(songs, "AEM");
         }
 
         private void FavroritePlaylist_Click(object sender, RoutedEventArgs e)

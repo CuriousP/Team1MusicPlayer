@@ -47,5 +47,7 @@ namespace Team1MusicPlayer.Model
 
             filteredSongs.ForEach(s => songs.Add(s));
         }
+
+       
     }
 }
