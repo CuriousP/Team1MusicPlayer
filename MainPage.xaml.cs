@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
@@ -50,6 +51,7 @@ namespace Team1MusicPlayer
 
             Uri pathUri = new Uri("ms-appx:///Assets/AudioFile/" + song.AudioFile);
             SongPlayer.Source = MediaSource.CreateFromUri(pathUri);
+            MyImage.Source = new BitmapImage(new Uri("ms-appx:///Assets/ImageFile/" + song.Album.ImageFile, UriKind.RelativeOrAbsolute));
 
         }
         private void AlbumListView_ItemClick(object sender, ItemClickEventArgs e)

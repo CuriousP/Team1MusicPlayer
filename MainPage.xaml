@@ -81,6 +81,8 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
+                    <Image Grid.Row="0" Name="MyImage"  Width = "200" 
+                           VerticalAlignment = "Top" Margin = "50,70,0,50" Height="200" HorizontalAlignment="Left"/>
                     <TextBlock Margin="10,0,0,0" Name ="SongTextBlock" Text="All Songs" FontSize="30" Foreground="Crimson"/>
                     <ListView Grid.Row="1" Name="SongListView" IsItemClickEnabled="True"
                                ItemsSource="{x:Bind songs}"
