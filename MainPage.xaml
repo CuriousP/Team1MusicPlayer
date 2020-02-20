@@ -9,12 +9,13 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid  Background = "White" BorderBrush = "Black">
+    <Grid Background = "White" BorderBrush = "Black">
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        
         <RelativePanel>
             <Button Content="&#xE80F;"
                     BorderThickness="2"
@@ -22,8 +23,7 @@
                     FontFamily="Segoe MDL2 Assets"
                     Click="HomeButton_Click"
                     BorderBrush="Black"
-                    RelativePanel.AlignLeftWithPanel="True" Background="#336C99E5"
-                    />
+                    RelativePanel.AlignLeftWithPanel="True" Background="#336C99E5"/>
             <Button Content="&#xE0A6;"
                     Name="BackButton"
                     FontFamily="Segoe MDL2 Assets"
@@ -40,8 +40,7 @@
                        Height="28" 
                        Width="340"
                        SearchHistoryEnabled="False"
-                       RelativePanel.RightOf="BackButton" PlaceholderText="Type here to search" 
-                       />
+                       RelativePanel.RightOf="BackButton" PlaceholderText="Type here to search"/>
             <Button Content="&#xE894;"
                     BorderThickness="2"
                     Name="ClearButton"
@@ -49,8 +48,7 @@
                     Click="ClearButton_Click"
                     BorderBrush="Black"
                     RelativePanel.RightOf="mySearchBox"
-                    Background="#336C99E5"
-                    />
+                    Background="#336C99E5"/>
         </RelativePanel>
         <SplitView Grid.Row="1" Name="MySplitView"
                    PaneBackground="Khaki"
@@ -61,21 +59,20 @@
                 <ListView Name="AlbumListView" IsItemClickEnabled="True"
                           ItemClick="AlbumListView_ItemClick">
 
-                    <Button Content="Album1" 
+                    <Button Content="Alai" 
                     Click="Album1Button_Click"
                     BorderBrush="Black"
                     Background="#336C99E5"/>
 
-                    <Button Content="Album2"                   
+                    <Button Content="AEM"                   
                     Click="Album2Button_Click"
                     BorderBrush="Black"
                      Background="#336C99E5"/>
                     
-                    <Button Content="Favroites" 
-                    Click="FavroritePlaylist_Click"
+                    <Button Content="Favorites" 
+                    Click="FavoritePlaylist_Click"
                     BorderBrush="Black" 
-                    Background="#336C99E5" />
-
+                    Background="#336C99E5"/>
                 </ListView>
             </SplitView.Pane>
             <SplitView.Content>
@@ -84,7 +81,6 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-
                     <TextBlock Name ="SongTextBlock" Text="All Songs" FontSize="30"/>
                     <ListView Grid.Row="1" Name="SongListView" IsItemClickEnabled="True"
                                ItemsSource="{x:Bind songs}"
@@ -103,7 +99,6 @@
                                          FontSize="18"
                                          Margin="10,0,0,0"
                                          VerticalAlignment="Center"/>
-
                                     <TextBlock 
                                          Text="{x:Bind Length}" 
                                          FontSize="18"
@@ -112,14 +107,15 @@
                                     <Button Content="&#xEB52;"
                                         Name="Favorite"
                                         Margin="15,0,0,0"
+                                        
                                         Foreground="Red"
                                         FontFamily="Segoe MDL2 Assets"
-                                        BorderThickness="1" 
+                                        BorderThickness="1"
+                                        BorderBrush="Black"
                                         Background="White"    
                                         Click="FavoriteButton_Click"
                                         HorizontalContentAlignment="Center"
-                                     />
-
+                                            Tag=" {data: Song}"/>
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>
@@ -131,6 +127,5 @@
                 </Grid>
             </SplitView.Content>
         </SplitView>
-
     </Grid>
 </Page>
