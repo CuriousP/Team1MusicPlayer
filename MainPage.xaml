@@ -59,12 +59,12 @@
                 <ListView Name="AlbumListView" IsItemClickEnabled="True"
                           ItemClick="AlbumListView_ItemClick">
 
-                    <Button Content="Alai" 
+                    <Button Content="Album1" 
                     Click="Album1Button_Click"
                     BorderBrush="Black"
                     Background="#336C99E5"/>
 
-                    <Button Content="AEM"                   
+                    <Button Content="Album2"                   
                     Click="Album2Button_Click"
                     BorderBrush="Black"
                      Background="#336C99E5"/>

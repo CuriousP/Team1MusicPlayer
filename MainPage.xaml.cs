@@ -79,13 +79,9 @@ namespace Team1MusicPlayer
         }
         private void Album1Button_Click(object sender, RoutedEventArgs e)
         {
-            var button = sender as Button;
-            SongManager.SetAlbumSongs(songs, button.Content.ToString());
         }
         private void Album2Button_Click(object sender, RoutedEventArgs e)
         {
-            var button = sender as Button;
-            SongManager.SetAlbumSongs(songs, button.Content.ToString());
         }
 
         private void FavoritePlaylist_Click(object sender, RoutedEventArgs e)
