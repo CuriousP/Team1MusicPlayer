@@ -57,15 +57,15 @@ namespace Team1MusicPlayer.Model
             SongManager.favoriteSongs.ForEach(s => songs.Add(s));
         }
 
-        public static void SetAlbumSongs(ObservableCollection<Song> songs, string albumName)
+        public static void FilterSongByAlbumName(ObservableCollection<Song> songs, string albumName)
         {
+            var allSongs = getSongs();
             songs.Clear();
-            getSongs().ForEach(s => {
-                if (s.Album.AlbumName.Equals(albumName))
-                {
-                    songs.Add(s);
-                }
-            });
+            var filteredSongs = allSongs.Where(s => s.Album.AlbumName.ToLower().Contains(albumName.ToLower())).ToList();
+
+            filteredSongs.ForEach(s => songs.Add(s));
         }
+
+
     }
 }
