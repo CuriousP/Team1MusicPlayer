@@ -81,7 +81,7 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <TextBlock Name ="SongTextBlock" Text="All Songs" FontSize="30"/>
+                    <TextBlock Margin="10,0,0,0" Name ="SongTextBlock" Text="All Songs" FontSize="30" Foreground="Crimson"/>
                     <ListView Grid.Row="1" Name="SongListView" IsItemClickEnabled="True"
                                ItemsSource="{x:Bind songs}"
                               ItemClick="SongListView_ItemClick">
@@ -96,11 +96,12 @@
                                         VerticalAlignment="Center"/>
                                     <TextBlock 
                                          Text="{x:Bind Album.AlbumName}" 
+                                         Foreground="DarkGreen"
                                          FontSize="18"
                                          Margin="10,0,0,0"
                                          VerticalAlignment="Center"/>
                                     <TextBlock 
-                                         Text="{x:Bind Length}" 
+                                         Text="{x:Bind Length}"
                                          FontSize="18"
                                          Margin="10,0,0,0"
                                          VerticalAlignment="Center"/>
