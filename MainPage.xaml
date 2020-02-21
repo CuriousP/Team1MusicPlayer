@@ -58,7 +58,6 @@
             <SplitView.Pane>
                 <ListView Name="AlbumListView" IsItemClickEnabled="True"
                           ItemClick="AlbumListView_ItemClick">
-
                     <Button Content="Album1" 
                     Click="Album1Button_Click"
                     BorderBrush="Black"
@@ -108,7 +107,6 @@
                                     <Button Content="&#xEB52;"
                                         Name="Favorite"
                                         Margin="15,0,0,0"
-                                        
                                         Foreground="Red"
                                         FontFamily="Segoe MDL2 Assets"
                                         BorderThickness="1"
@@ -116,7 +114,7 @@
                                         Background="White"    
                                         Click="FavoriteButton_Click"
                                         HorizontalContentAlignment="Center"
-                                            Tag=" {data: Song}"/>
+                                            Tag=" {x: Bind AlbumSongs}"/>
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>

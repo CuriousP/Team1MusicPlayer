@@ -50,7 +50,6 @@ namespace Team1MusicPlayer
 
             Uri pathUri = new Uri("ms-appx:///Assets/AudioFile/" + song.AudioFile);
             SongPlayer.Source = MediaSource.CreateFromUri(pathUri);
-
         }
         private void AlbumListView_ItemClick(object sender, ItemClickEventArgs e)
         {
