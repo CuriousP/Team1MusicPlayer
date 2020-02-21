@@ -48,13 +48,48 @@ namespace Team1MusicPlayer.Model
             if (existingSong == null)
             {
                 SongManager.favoriteSongs.Add(song);
-            }            
+            }
+            SaveFavoriteSongsInFile();
         }
+
+        private async static void SaveFavoriteSongsInFile()
+        {
+            string strContent = "";
+            foreach (Song str in SongManager.favoriteSongs)
+            {
+                strContent += str.AudioFile;
+                strContent += Environment.NewLine;
+            }
+            Windows.Storage.StorageFolder storageFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
+            //C:\Users\India\AppData\Local\Packages\0c238a61-95f8-4b4e-b8d7-3a23b6ad32d2_3xkgbvrn32f9p\LocalState
+            Windows.Storage.StorageFile favTextFile = await storageFolder.CreateFileAsync("FavoriteSongsList.txt", Windows.Storage.CreationCollisionOption.OpenIfExists);
+
+            //Write data to the file
+            await Windows.Storage.FileIO.WriteTextAsync(favTextFile, strContent);
+        }
+
 
         public static void GetFavoriteSongs(ObservableCollection<Song> songs)
         {
+            LoadfavoriteSongsFromFile();
             songs.Clear();
             SongManager.favoriteSongs.ForEach(s => songs.Add(s));
+        }
+        private async static void LoadfavoriteSongsFromFile()
+        {
+            Windows.Storage.StorageFolder storageFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
+            Windows.Storage.StorageFile favTextFile = await storageFolder.GetFileAsync("FavoriteSongsList.txt");
+
+            string allFavSongs = await Windows.Storage.FileIO.ReadTextAsync(favTextFile);
+            var allSongs = getSongs();
+            SongManager.favoriteSongs.Clear();
+            foreach (string strAudioFile in allFavSongs.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries))
+            {               
+                Song existingSong = getSongs().FirstOrDefault(s => s.AudioFile.Equals(strAudioFile));
+                SongManager.favoriteSongs.Add(existingSong);
+
+            }         
+            ////C:\Users\USERNAME\AppData\Local\Packages\0c238a61-95f8-4b4e-b8d7-3a23b6ad32d2_3xkgbvrn32f9p\LocalState
         }
 
         public static void FilterSongByAlbumName(ObservableCollection<Song> songs, string albumName)
