@@ -68,7 +68,7 @@ namespace Team1MusicPlayer.Model
             await Windows.Storage.FileIO.WriteTextAsync(favTextFile, strContent);
         }
 
-
+        //Get favorites songs
         public static void GetFavoriteSongs(ObservableCollection<Song> songs)
         {
             LoadfavoriteSongsFromFile();
