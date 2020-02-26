@@ -108,10 +108,9 @@
                                          Margin="10,0,0,0"
                                          VerticalAlignment="Center"/>
                                     <Button Content="&#xEB52;"
-                                        x:Name="Favorite"
-                                        Margin="15,0,0,0"
-                                        
-                                        
+                                        Name="Favorite"
+                                        Margin="15,0,0,0"                                   
+                                        Foreground="Red"
                                         FontFamily="Segoe MDL2 Assets"
                                         BorderThickness="1"
                                         BorderBrush="Black"
