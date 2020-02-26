@@ -84,12 +84,12 @@
                     <Image Grid.Row="0" Name="MyImage"  Width = "200" 
                            VerticalAlignment = "Top" Margin = "50,70,0,50" Height="200" HorizontalAlignment="Left"/>
                     <TextBlock Margin="10,0,0,0" Name ="SongTextBlock" Text="All Songs" FontSize="30" Foreground="Crimson"/>
-                    <ListView Grid.Row="1" Name="SongListView" IsItemClickEnabled="True"
+                    <ListView Grid.Row="1" x:Name="SongListView" IsItemClickEnabled="True"
                                ItemsSource="{x:Bind songs}"
                               ItemClick="SongListView_ItemClick">
                         <ListView.ItemTemplate>
                             <DataTemplate x:DataType="data:Song">
-                                <StackPanel Orientation="Horizontal">
+                                <StackPanel Orientation="Horizontal" x:Name="SongsStackPanel" x:Uid="SongsStackPanelId">
                                     <TextBlock
                                         Text="{x:Bind SongName}"
                                         TextWrapping="Wrap"
@@ -109,8 +109,7 @@
                                          VerticalAlignment="Center"/>
                                     <Button Content="&#xEB52;"
                                         Name="Favorite"
-                                        Margin="15,0,0,0"
-                                        
+                                        Margin="15,0,0,0"                                   
                                         Foreground="Red"
                                         FontFamily="Segoe MDL2 Assets"
                                         BorderThickness="1"
@@ -118,6 +117,7 @@
                                         Background="White"    
                                         Click="FavoriteButton_Click"
                                         HorizontalContentAlignment="Center"
+                                            
                                             Tag=" {data: Song}"/>
                                 </StackPanel>
                             </DataTemplate>
