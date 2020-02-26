@@ -9,7 +9,7 @@ namespace Team1MusicPlayer.Model
 {
     public static class SongManager
     {
-        private static List<Song> favoriteSongs = new List<Song>();
+        public static List<Song> favoriteSongs = new List<Song>();
 
         private static List<Song> getSongs()
         {
@@ -48,6 +48,18 @@ namespace Team1MusicPlayer.Model
             if (existingSong == null)
             {
                 SongManager.favoriteSongs.Add(song);
+            }
+            SaveFavoriteSongsInFile();
+        }
+
+        public static void RemoveFavoriteSong(Song song)
+        {
+            Song existingSong = SongManager.favoriteSongs.FirstOrDefault(s => s.SongName.Equals(song.SongName));
+            if (existingSong != null)
+            {
+                int indexnumber = SongManager.favoriteSongs.IndexOf(existingSong);
+                if(indexnumber>=0)
+                    SongManager.favoriteSongs.RemoveAt(indexnumber);
             }
             SaveFavoriteSongsInFile();
         }
