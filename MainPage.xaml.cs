@@ -36,125 +36,17 @@ namespace Team1MusicPlayer
         {
             this.InitializeComponent();
             songs = new ObservableCollection<Song>();
+            MyImage.Source = new BitmapImage(new Uri("ms-appx:///Assets/ImageFile/" + "MusicIcon.png", UriKind.RelativeOrAbsolute));
             SongManager.GetAllSongs(songs);
-            //this.UpdateColorForFavoriteSons();
             
         }
-        #region "Extra Code"
-        //public  List<TChild> GetChildren<TChild>(this DependencyObject reference)
-        // where TChild : class
-        //{
-        //    List<TChild> result = new List<TChild>();
-
-        //    // enumerate all of the children of the supplied element searching for all the   
-        //    // elements that match the supplied type  
-        //    for (int x = 0; x < VisualTreeHelper.GetChildrenCount(reference); x++)
-        //    {
-        //        DependencyObject child = VisualTreeHelper.GetChild(reference, x);
-        //        TChild tChildInstance = child as TChild;
-        //        if (tChildInstance != null)
-        //        {
-        //            result.Add(tChildInstance);
-        //        }
-
-        //        // now repeat the process on all the children of the current child element  
-        //        // by recursively calling this method  
-        //        //result.AddRange(child.GetChildren<TChild>());
-        //    }
-        //    return result;
-        //}
-        private void UpdateColorForFavoriteSons()
-        {
-            var listofButtons = new List<Button>();
-            //FindChildren(listofButtons, this);
-            var t = TraverseCTFindShape<UIElement>(this, "abc");
-            //var tControls = GetChildren<StackPanel>(this);
-            foreach (Song s in songs)
-            {
-                Song existingSong = SongManager.favoriteSongs.FirstOrDefault(s1 => s1.SongName.Equals(s.SongName));
-                if (existingSong != null)
-                {
-
-                }
-            }
-        }
-        internal static void FindChildren<T>(List<T> results, DependencyObject startNode)
-        where T : DependencyObject
-        {
-            int count = VisualTreeHelper.GetChildrenCount(startNode);
-            for (int i = 0; i < count; i++)
-            {
-                DependencyObject current = VisualTreeHelper.GetChild(startNode, i);
-                if ((current.GetType()).Equals(typeof(T)) || (current.GetType().GetTypeInfo().IsSubclassOf(typeof(T))))
-                {
-                    T asType = (T)current;
-                    results.Add(asType);
-                }
-                FindChildren<T>(results, current);
-            }
-        }
-
-        public static T TraverseCTFindShape<T>(DependencyObject root, String name) where T : Windows.UI.Xaml.UIElement
-        {
-            T control = null;
-
-            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(root); i++)
-            {
-                var child = VisualTreeHelper.GetChild(root, i);
-
-                string childTag = child.GetValue(FrameworkElement.TagProperty) as string;
-                control = child as T;
-
-                if (childTag == name)
-                {
-                    return control;
-                }
-                else
-                {
-                    control = TraverseCTFindShape<T>(child, name);
-
-                    if (control != null)
-                    {
-                        return control;
-                    }
-                }
-            }
-
-            return control;
-        }
-
-        void FindTextBoxex(object uiElement, IList<Button> foundOnes)
-        {
-            if (uiElement is Button)
-            {
-                foundOnes.Add((Button)uiElement);
-            }
-            else if (uiElement is Panel)
-            {
-                var uiElementAsCollection = (Panel)uiElement;
-                foreach (var element in uiElementAsCollection.Children)
-                {
-                    FindTextBoxex(element, foundOnes);
-                }
-            }
-            else if (uiElement is StackPanel)
-            {
-                var uiElementAsUserControl = (UserControl)uiElement;
-                FindTextBoxex(uiElementAsUserControl.Content, foundOnes);
-            }
-            else if (uiElement is ContentControl)
-            {
-                var uiElementAsContentControl = (ContentControl)uiElement;
-                FindTextBoxex(uiElementAsContentControl.Content, foundOnes);
-            }
-
-        }
-        #endregion
+       
 
         private void HomeButton_Click(object sender, RoutedEventArgs e)
         {
             mySearchBox.QueryText = string.Empty;
             songs.Clear();
+            MyImage.Source = new BitmapImage(new Uri("ms-appx:///Assets/ImageFile/" + "MusicIcon.png", UriKind.RelativeOrAbsolute));
             SongManager.GetAllSongs(songs);
             SongTextBlock.Text = "All Songs";
         }
