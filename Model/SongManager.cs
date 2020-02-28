@@ -66,7 +66,7 @@ namespace Team1MusicPlayer.Model
 
         private async static void SaveFavoriteSongsInFile()
         {
-            string strContent = "";
+            string strContent = Environment.NewLine;
             foreach (Song str in SongManager.favoriteSongs)
             {
                 strContent += str.AudioFile;
@@ -78,6 +78,9 @@ namespace Team1MusicPlayer.Model
 
             //Write data to the file
             await Windows.Storage.FileIO.WriteTextAsync(favTextFile, strContent);
+            //added code to stop the program for 0.3 seconds to make sure that Async operation completes before we do other operation
+            System.Threading.Thread.Sleep(300);
+            LoadfavoriteSongsFromFile();
         }
 
 
@@ -91,8 +94,9 @@ namespace Team1MusicPlayer.Model
         {
             Windows.Storage.StorageFolder storageFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
             Windows.Storage.StorageFile favTextFile = await storageFolder.GetFileAsync("FavoriteSongsList.txt");
-
-            string allFavSongs = await Windows.Storage.FileIO.ReadTextAsync(favTextFile);
+            if (!favTextFile.IsAvailable)
+                return;
+            string allFavSongs = await Windows.Storage.FileIO.ReadTextAsync(favTextFile);            
             var allSongs = getSongs();
             SongManager.favoriteSongs.Clear();
             foreach (string strAudioFile in allFavSongs.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries))
@@ -109,7 +113,6 @@ namespace Team1MusicPlayer.Model
             var allSongs = getSongs();
             songs.Clear();
             var filteredSongs = allSongs.Where(s => s.Album.AlbumName.ToLower().Contains(albumName.ToLower())).ToList();
-
             filteredSongs.ForEach(s => songs.Add(s));
         }
 

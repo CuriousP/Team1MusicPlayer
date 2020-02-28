@@ -38,7 +38,6 @@ namespace Team1MusicPlayer
             songs = new ObservableCollection<Song>();
             SongManager.GetAllSongs(songs);
             //this.UpdateColorForFavoriteSons();
-            
         }
         #region "Extra Code"
         //public  List<TChild> GetChildren<TChild>(this DependencyObject reference)
@@ -157,13 +156,14 @@ namespace Team1MusicPlayer
             songs.Clear();
             SongManager.GetAllSongs(songs);
             SongTextBlock.Text = "All Songs";
-        }
+         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
             mySearchBox.QueryText = string.Empty;
             songs.Clear();
             SongManager.GetAllSongs(songs);
+            
         }
         private void SongListView_ItemClick(object sender, ItemClickEventArgs e)
         {
@@ -171,6 +171,7 @@ namespace Team1MusicPlayer
             Uri pathUri = new Uri("ms-appx:///Assets/AudioFile/" + song.AudioFile);
             SongPlayer.Source = MediaSource.CreateFromUri(pathUri);
             MyImage.Source = new BitmapImage(new Uri("ms-appx:///Assets/ImageFile/" + song.Album.ImageFile, UriKind.RelativeOrAbsolute));
+            
 
         }
         private void AlbumListView_ItemClick(object sender, ItemClickEventArgs e)
@@ -180,6 +181,8 @@ namespace Team1MusicPlayer
                 var image = (Album)e.ClickedItem;
                 Uri pathUri = new Uri("ms-appx:///Assets/ImageFile/" + image.AlbumName);
                 SongPlayer.Source = MediaSource.CreateFromUri(pathUri);
+                
+
             }
         }
         private void mySearchBox_QuerySubmitted(SearchBox sender, SearchBoxQuerySubmittedEventArgs args)
@@ -196,33 +199,39 @@ namespace Team1MusicPlayer
         private void FavoriteButton_Click(object sender, RoutedEventArgs e)
         {            
             var button = sender as Button;
-            //Windows.UI.Xaml.Media.SolidColorBrush sb = (Windows.UI.Xaml.Media.SolidColorBrush) button.Foreground;
-            //bool bAddSongToFav = false;
-            //if (sb.Color.R != 0)
+            ////Windows.UI.Xaml.Media.SolidColorBrush sb = (Windows.UI.Xaml.Media.SolidColorBrush) button.Foreground;
+            ////bool bAddSongToFav = false;
+            ////if (sb.Color.R != 0)
+            ////{
+            ////    button.Foreground = new SolidColorBrush(Windows.UI.Colors.Blue);
+            ////}
+            ////else
+            ////{
+            ////    button.Foreground = new SolidColorBrush(Windows.UI.Colors.Red);
+            ////    bAddSongToFav = true;
+            ////}
+            ////find out if song exists in fav list
+            Song favSong = (Song)button.DataContext;
+            //Song existingSong =SongManager.favoriteSongs.FirstOrDefault(s => s.AudioFile.Equals(favSong.AudioFile));
+           
+            //if (existingSong == null)
             //{
-            //    button.Foreground = new SolidColorBrush(Windows.UI.Colors.Blue);
+            //    SongManager.AddFavoriteSong(favSong);
             //}
             //else
             //{
-            //    button.Foreground = new SolidColorBrush(Windows.UI.Colors.Red);
-            //    bAddSongToFav = true;
+            //    SongManager.RemoveFavoriteSong(favSong);
             //}
-            //find out if song exists in fav list
-            Song favSong = (Song)button.DataContext;
-            Song existingSong =SongManager.favoriteSongs.FirstOrDefault(s => s.AudioFile.Equals(favSong.AudioFile));
-           
-            if (existingSong == null)
-            {
-                SongManager.AddFavoriteSong(favSong);
-            }
-            else
-            {
-                SongManager.RemoveFavoriteSong(favSong);                                
-            }
+
+            SongManager.AddFavoriteSong(favSong);
             if (SongTextBlock.Text == "Favorite Songs")
                 SongManager.GetFavoriteSongs(songs);
             else if (SongTextBlock.Text == "All Songs")
                 SongManager.GetAllSongs(songs);
+
+
+            
+
 
         }
         private void Album1Button_Click(object sender, RoutedEventArgs e)
@@ -242,7 +251,21 @@ namespace Team1MusicPlayer
             songs.Clear();
             SongManager.GetFavoriteSongs(songs);
             SongTextBlock.Text = "Favorite Songs";
-           
+
         }
+
+        private void RemoveFavButton_Click(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;          
+            Song favSong = (Song)button.DataContext;
+            songs.Clear();
+            SongManager.RemoveFavoriteSong(favSong);
+            if (SongTextBlock.Text == "Favorite Songs")
+                SongManager.GetFavoriteSongs(songs);
+            else if (SongTextBlock.Text == "All Songs")
+                SongManager.GetAllSongs(songs);
+
+            
+        }     
     }
 }
