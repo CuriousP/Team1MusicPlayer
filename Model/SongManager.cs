@@ -77,7 +77,7 @@ namespace Team1MusicPlayer.Model
             Windows.Storage.StorageFile favTextFile = await storageFolder.CreateFileAsync("FavoriteSongsList.txt", Windows.Storage.CreationCollisionOption.OpenIfExists);
 
             //Write data to the file
-            await Windows.Storage.FileIO.WriteTextAsync(favTextFile, strContent);
+            Windows.Storage.FileIO.WriteTextAsync(favTextFile, strContent).GetAwaiter().GetResult();
         }
 
 
