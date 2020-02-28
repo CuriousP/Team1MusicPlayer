@@ -51,12 +51,7 @@ namespace Team1MusicPlayer
             SongTextBlock.Text = "All Songs";
         }
 
-        private void BackButton_Click(object sender, RoutedEventArgs e)
-        {
-            mySearchBox.QueryText = string.Empty;
-            songs.Clear();
-            SongManager.GetAllSongs(songs);
-        }
+        
         private void SongListView_ItemClick(object sender, ItemClickEventArgs e)
         {
             var song = (Song)e.ClickedItem;
