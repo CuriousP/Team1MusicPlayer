@@ -28,8 +28,10 @@ namespace Team1MusicPlayer
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
+    
     public sealed partial class MainPage : Page
     {
+        public Visibility Visibility { get; set; }
         private ObservableCollection<Song> songs;
         
         public MainPage()
@@ -39,6 +41,7 @@ namespace Team1MusicPlayer
             MyImage.Source = new BitmapImage(new Uri("ms-appx:///Assets/ImageFile/" + "MusicIcon.png", UriKind.RelativeOrAbsolute));
             SongManager.GetAllSongs(songs);
         }
+        
         private void HomeButton_Click(object sender, RoutedEventArgs e)
         {
             mySearchBox.QueryText = string.Empty;

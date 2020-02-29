@@ -8,6 +8,17 @@
     xmlns:data="using:Team1MusicPlayer.Model"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Light">
+                    <SolidColorBrush x:Key="ButtonBackground" Color="BlanchedAlmond"/>
+                    <SolidColorBrush x:Key="ButtonForeground" Color="Black"/>
+                    <SolidColorBrush x:Key="ButtonBorderBrush" Color="Black" />
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
 
     <Grid Background = "White" BorderBrush = "Black">
 
@@ -23,8 +34,7 @@
                     FontFamily="Segoe MDL2 Assets"
                     Width="100"
                     Click="HomeButton_Click"
-                    BorderBrush="Black"
-                    RelativePanel.AlignLeftWithPanel="True" Background="#336C99E5"/>
+                    RelativePanel.AlignLeftWithPanel="True"/>
             <SearchBox Name="mySearchBox"
                        BorderThickness="2"
                        FocusOnKeyboardInput="True"
@@ -38,9 +48,8 @@
                     Name="ClearButton"
                     FontFamily="Segoe MDL2 Assets"
                     Click="ClearButton_Click"
-                    BorderBrush="Black"
-                    RelativePanel.RightOf="mySearchBox"
-                    Background="#336C99E5"/>
+                    RelativePanel.RightOf="mySearchBox"/>
+            
         </RelativePanel>
         <SplitView Grid.Row="1" Name="MySplitView"
                    PaneBackground="Khaki"
@@ -50,21 +59,13 @@
             <SplitView.Pane>
                 <ListView Name="AlbumListView" IsItemClickEnabled="True"
                           ItemClick="AlbumListView_ItemClick">
-
                     <Button Content="Album1" 
-                    Click="Album1Button_Click"
-                    BorderBrush="Black"
-                    Background="#336C99E5"/>
-
+                            Click="Album1Button_Click"/>
                     <Button Content="Album2"                   
-                    Click="Album2Button_Click"
-                    BorderBrush="Black"
-                     Background="#336C99E5"/>
-                    
+                            Click="Album2Button_Click"/>
                     <Button Content="Favorites" 
-                    Click="FavoritePlaylist_Click"
-                    BorderBrush="Black" 
-                    Background="#336C99E5"/>
+                            Click="FavoritePlaylist_Click"/>
+
                 </ListView>
             </SplitView.Pane>
             <SplitView.Content>
@@ -109,7 +110,6 @@
                                         Background="White"    
                                         Click="FavoriteButton_Click"
                                         HorizontalContentAlignment="Center"
-                                            
                                             Tag=" {data: Song}"/>
                                 </StackPanel>
                             </DataTemplate>
@@ -118,7 +118,14 @@
                     <MediaPlayerElement Background="Beige" Grid.Row="2" x:Name="SongPlayer"
                                         Width="400"
                                         AutoPlay="True"
-                                        AreTransportControlsEnabled="True"/>
+                                        AreTransportControlsEnabled="True">
+                        <MediaPlayerElement.TransportControls>
+                        <MediaTransportControls IsStopButtonVisible="True" IsStopEnabled="True"
+                                                    IsFastForwardButtonVisible="True" IsFastForwardEnabled="True"
+                                                    IsFastRewindButtonVisible="True" IsFastRewindEnabled="True"/>
+                     </MediaPlayerElement.TransportControls>
+                     </MediaPlayerElement>
+
                 </Grid>
             </SplitView.Content>
         </SplitView>
