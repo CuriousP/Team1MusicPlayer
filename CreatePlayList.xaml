@@ -1,0 +1,47 @@
+﻿<Page
+    x:Class="Team1MusicPlayer.CreatePlayList"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Team1MusicPlayer"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions >
+            <ColumnDefinition Width="500"/>
+            <ColumnDefinition Width="500"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+
+        <CommandBar Grid.Row="0" Grid.Column="0"  Background="Transparent" IsOpen="False" DefaultLabelPosition="Right">
+            <AppBarButton Icon="Add" Label="AddSongs" Click="Add_Click"/>
+            <AppBarButton Icon="Delete" Label="DeleteSongs" Click="Delete_Click"/>
+            <AppBarButton Icon="Camera" Label="Choose Picture" Click="Camera_Click"/>
+        </CommandBar>
+        <ListView Height="300" Grid.Row="2" Grid.Column="1" Name="SongListView" IsItemClickEnabled="True">
+
+        </ListView>
+        <Image x:Name="MyImage" Grid.Row="1" Grid.Column="1" Width="250" Height="250"/>
+
+        <MediaPlayerElement Grid.Row="4" Grid.ColumnSpan="3"  x:Name="SongPlayer" AutoPlay="True"
+                            AreTransportControlsEnabled="True" >
+            <MediaPlayerElement.TransportControls>
+                <MediaTransportControls  IsCompact="True" IsStopButtonVisible="True" IsStopEnabled="True" IsNextTrackButtonVisible="True" IsPreviousTrackButtonVisible="True"/>
+            </MediaPlayerElement.TransportControls>
+        </MediaPlayerElement>
+        <StackPanel>
+        <HyperlinkButton Content="Home Page" Click="HyperlinkButton_Click"/>
+        </StackPanel>
+    </Grid>
+   
+</Page>

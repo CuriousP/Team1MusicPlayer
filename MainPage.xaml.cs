@@ -31,10 +31,12 @@ namespace Team1MusicPlayer
     public sealed partial class MainPage : Page
     {
         private ObservableCollection<Song> songs;
-        
+        Windows.Media.Playback.MediaPlayer mediaPlayer;
+
+
         public MainPage()
         {
-            this.InitializeComponent();
+            this.InitializeComponent();          
             songs = new ObservableCollection<Song>();
             MyImage.Source = new BitmapImage(new Uri("ms-appx:///Assets/ImageFile/" + "MusicIcon.png", UriKind.RelativeOrAbsolute));
             SongManager.GetAllSongs(songs);
@@ -53,16 +55,18 @@ namespace Team1MusicPlayer
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            mySearchBox.QueryText = string.Empty;
-            songs.Clear();
-            SongManager.GetAllSongs(songs);
+           
         }
         private void SongListView_ItemClick(object sender, ItemClickEventArgs e)
         {
             var song = (Song)e.ClickedItem;
             Uri pathUri = new Uri("ms-appx:///Assets/AudioFile/" + song.AudioFile);
+            
             SongPlayer.Source = MediaSource.CreateFromUri(pathUri);
             MyImage.Source = new BitmapImage(new Uri("ms-appx:///Assets/ImageFile/" + song.Album.ImageFile, UriKind.RelativeOrAbsolute));
+            mediaPlayer = SongPlayer.MediaPlayer;
+            mediaPlayer.Play();
+            
 
         }
         private void AlbumListView_ItemClick(object sender, ItemClickEventArgs e)
@@ -135,6 +139,28 @@ namespace Team1MusicPlayer
             SongManager.GetFavoriteSongs(songs);
             SongTextBlock.Text = "Favorite Songs";
            
+        }
+
+        private void UserPlaylist_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(CreatePlayList), null);
+        }
+
+        private async void Add_Click(object sender, RoutedEventArgs e)
+        {
+
+            var userPlayList = new UserPlayList();
+            await userPlayList.AddMedia(SongListView, SongPlayer);
+        }
+
+        private void Delete_Click(object sender, RoutedEventArgs e)
+        {
+            SongListView.Items.Remove(SongListView.SelectedItem);
+        }
+
+        private void AppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
