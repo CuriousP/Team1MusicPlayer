@@ -28,8 +28,10 @@ namespace Team1MusicPlayer
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
+    
     public sealed partial class MainPage : Page
     {
+        public Visibility Visibility { get; set; }
         private ObservableCollection<Song> songs;
         
         public MainPage()
@@ -38,10 +40,8 @@ namespace Team1MusicPlayer
             songs = new ObservableCollection<Song>();
             MyImage.Source = new BitmapImage(new Uri("ms-appx:///Assets/ImageFile/" + "MusicIcon.png", UriKind.RelativeOrAbsolute));
             SongManager.GetAllSongs(songs);
-            
         }
-       
-
+        
         private void HomeButton_Click(object sender, RoutedEventArgs e)
         {
             mySearchBox.QueryText = string.Empty;
@@ -82,6 +82,7 @@ namespace Team1MusicPlayer
 
         private void FavoriteButton_Click(object sender, RoutedEventArgs e)
         {            
+            
             var button = sender as Button;
             //Windows.UI.Xaml.Media.SolidColorBrush sb = (Windows.UI.Xaml.Media.SolidColorBrush) button.Foreground;
             //bool bAddSongToFav = false;
@@ -110,6 +111,7 @@ namespace Team1MusicPlayer
                 SongManager.GetFavoriteSongs(songs);
             else if (SongTextBlock.Text == "All Songs")
                 SongManager.GetAllSongs(songs);
+            
 
         }
         private void Album1Button_Click(object sender, RoutedEventArgs e)
@@ -126,6 +128,7 @@ namespace Team1MusicPlayer
 
         private void FavoritePlaylist_Click(object sender, RoutedEventArgs e)
         {
+            
             songs.Clear();
             SongManager.GetFavoriteSongs(songs);
             SongTextBlock.Text = "Favorite Songs";
