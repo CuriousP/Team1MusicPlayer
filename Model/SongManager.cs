@@ -40,8 +40,7 @@ namespace Team1MusicPlayer.Model
             filteredSongs.ForEach(s => songs.Add(s));
         }
 
-        // Creating user playlist
-
+        //User adding songs to his favorite playlist
         public static void AddFavoriteSong(Song song)
         {
             Song existingSong = SongManager.favoriteSongs.FirstOrDefault(s => s.SongName.Equals(song.SongName));
@@ -51,18 +50,7 @@ namespace Team1MusicPlayer.Model
             }
             SaveFavoriteSongsInFile();
         }
-
-        public static void RemoveFavoriteSong(Song song)
-        {
-            Song existingSong = SongManager.favoriteSongs.FirstOrDefault(s => s.SongName.Equals(song.SongName));
-            if (existingSong != null)
-            {
-                int indexnumber = SongManager.favoriteSongs.IndexOf(existingSong);
-                if(indexnumber>=0)
-                    SongManager.favoriteSongs.RemoveAt(indexnumber);
-            }
-            SaveFavoriteSongsInFile();
-        }
+        
 
         private async static void SaveFavoriteSongsInFile()
         {
@@ -80,6 +68,17 @@ namespace Team1MusicPlayer.Model
             Windows.Storage.FileIO.WriteTextAsync(favTextFile, strContent).GetAwaiter().GetResult();
         }
 
+        public static void RemoveFavoriteSong(Song song)
+        {
+            Song existingSong = SongManager.favoriteSongs.FirstOrDefault(s => s.SongName.Equals(song.SongName));
+            if (existingSong != null)
+            {
+                int indexnumber = SongManager.favoriteSongs.IndexOf(existingSong);
+                if (indexnumber >= 0)
+                    SongManager.favoriteSongs.RemoveAt(indexnumber);
+            }
+            SaveFavoriteSongsInFile();
+        }
 
         public static void GetFavoriteSongs(ObservableCollection<Song> songs)
         {
@@ -103,7 +102,6 @@ namespace Team1MusicPlayer.Model
             }         
             ////C:\Users\USERNAME\AppData\Local\Packages\0c238a61-95f8-4b4e-b8d7-3a23b6ad32d2_3xkgbvrn32f9p\LocalState
         }
-
         public static void FilterSongByAlbumName(ObservableCollection<Song> songs, string albumName)
         {
             var allSongs = getSongs();
@@ -112,7 +110,5 @@ namespace Team1MusicPlayer.Model
 
             filteredSongs.ForEach(s => songs.Add(s));
         }
-
-
     }
 }

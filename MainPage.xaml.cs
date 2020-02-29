@@ -19,8 +19,6 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
-
-
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
 namespace Team1MusicPlayer
@@ -31,7 +29,6 @@ namespace Team1MusicPlayer
     
     public sealed partial class MainPage : Page
     {
-        public Visibility Visibility { get; set; }
         private ObservableCollection<Song> songs;
         
         public MainPage()
@@ -51,7 +48,6 @@ namespace Team1MusicPlayer
             SongTextBlock.Text = "All Songs";
         }
 
-        
         private void SongListView_ItemClick(object sender, ItemClickEventArgs e)
         {
             var song = (Song)e.ClickedItem;
@@ -81,20 +77,8 @@ namespace Team1MusicPlayer
         }
 
         private void FavoriteButton_Click(object sender, RoutedEventArgs e)
-        {            
-            
+        {
             var button = sender as Button;
-            //Windows.UI.Xaml.Media.SolidColorBrush sb = (Windows.UI.Xaml.Media.SolidColorBrush) button.Foreground;
-            //bool bAddSongToFav = false;
-            //if (sb.Color.R != 0)
-            //{
-            //    button.Foreground = new SolidColorBrush(Windows.UI.Colors.Blue);
-            //}
-            //else
-            //{
-            //    button.Foreground = new SolidColorBrush(Windows.UI.Colors.Red);
-            //    bAddSongToFav = true;
-            //}
             //find out if song exists in fav list
             Song favSong = (Song)button.DataContext;
             Song existingSong =SongManager.favoriteSongs.FirstOrDefault(s => s.AudioFile.Equals(favSong.AudioFile));
@@ -128,7 +112,6 @@ namespace Team1MusicPlayer
 
         private void FavoritePlaylist_Click(object sender, RoutedEventArgs e)
         {
-            
             songs.Clear();
             SongManager.GetFavoriteSongs(songs);
             SongTextBlock.Text = "Favorite Songs";
