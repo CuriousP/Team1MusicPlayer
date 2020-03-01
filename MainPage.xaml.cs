@@ -10,6 +10,7 @@ using Team1MusicPlayer.Model;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Media.Core;
+using Windows.Media.Playback;
 using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -162,7 +163,10 @@ namespace Team1MusicPlayer
 
         private  void AddPlaylist_ItemClick(object sender, ItemClickEventArgs e)
         {
-          
+            var file = (StorageFile)e.ClickedItem;
+            var mediaPlaybackItem = new MediaPlaybackItem(MediaSource.CreateFromStorageFile(file));
+            SongPlayer.Source = mediaPlaybackItem;
+           
         }
     }
 }

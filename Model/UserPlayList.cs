@@ -30,7 +30,11 @@ namespace Team1MusicPlayer.Model
             {
                 var mediaPlaybackItem = new MediaPlaybackItem(MediaSource.CreateFromStorageFile(file));
                 mediaPlaybackList.Items.Add(mediaPlaybackItem);
-                listView.Items.Add(file.DisplayName);
+                bool songExist = listView.Items.Contains(file.DisplayName);
+                if(!songExist)
+                {
+                    listView.Items.Add(file);
+                }
             }
 
             mediaPlayerElement.Source = mediaPlaybackList;

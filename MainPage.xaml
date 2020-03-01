@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:data="using:Team1MusicPlayer.Model"
+    xmlns:data1="using:Windows.Storage"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <Page.Resources>
@@ -154,6 +155,15 @@
                         </ListView.ItemTemplate>
                     </ListView>
                     <ListView Height="300" Grid.Row="1" Grid.Column="1" Name="AddPlaylist" IsItemClickEnabled="True" ItemClick="AddPlaylist_ItemClick">
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="data1:StorageFile">
+                                <TextBlock
+                                        Text="{x:Bind DisplayName}"
+                                        TextWrapping="Wrap"
+                                        FontSize="18"
+                                        VerticalAlignment="Center"/>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
                     </ListView>
                     
                     <MediaPlayerElement Background="Beige" Grid.Row="2" x:Name="SongPlayer"
