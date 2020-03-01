@@ -18,11 +18,11 @@ namespace Team1MusicPlayer.Model
             Album album1 = new Album("Alai", "Alai.png");
             Album album2 = new Album("AEM", "AEM.png");
         
-            songs.Add(new Song("Alaipayuthey", "Alaipayuthey-Kanna.mp3", album1, new TimeSpan(0,3,41)));
-            songs.Add(new Song("Endrendrum", "Endrendrum-Punnagai.mp3",album1, new TimeSpan(0,3,57)));
+            songs.Add(new Song("Alaipayuthey", "Alaipayuthey-Kanna.mp3", album1, new TimeSpan(0,3,41),false));
+            songs.Add(new Song("Endrendrum", "Endrendrum-Punnagai.mp3",album1, new TimeSpan(0,3,57),false));
 
-            songs.Add(new Song("IdhuNaal", "IdhuNaal.mp3", album2,new TimeSpan(0,3,39)));
-            songs.Add(new Song("Rasaali", "Rasaali.mp3", album2, new TimeSpan(0,5,38)));
+            songs.Add(new Song("IdhuNaal", "IdhuNaal.mp3", album2,new TimeSpan(0,3,39),false));
+            songs.Add(new Song("Rasaali", "Rasaali.mp3", album2, new TimeSpan(0,5,38),false));
             return songs;
         }
         public static void GetAllSongs(ObservableCollection<Song> songs)
@@ -84,7 +84,12 @@ namespace Team1MusicPlayer.Model
         {
             LoadfavoriteSongsFromFile();
             songs.Clear();
-            SongManager.favoriteSongs.ForEach(s => songs.Add(s));
+            SongManager.favoriteSongs.ForEach(s =>
+            {
+                s.RemoveButtonVisibility = true;
+                s.FavButtonVisibility = false;
+                songs.Add(s);
+            });
         }
         private async static void LoadfavoriteSongsFromFile()
         {
