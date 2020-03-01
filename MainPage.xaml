@@ -8,6 +8,17 @@
     xmlns:data="using:Team1MusicPlayer.Model"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Light">
+                    <SolidColorBrush x:Key="ButtonBackground" Color="BlanchedAlmond"/>
+                    <SolidColorBrush x:Key="ButtonForeground" Color="Black"/>
+                    <SolidColorBrush x:Key="ButtonBorderBrush" Color="Black" />
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
 
     <Grid Background = "White" BorderBrush = "Black">
 
@@ -16,39 +27,30 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         
-        <RelativePanel>
+        <RelativePanel Background="Khaki" BorderBrush="Black" >
             <Button Content="&#xE80F;"
                     BorderThickness="2"
                     Name="HomeButton"
                     FontFamily="Segoe MDL2 Assets"
+                    Width="100"
                     Click="HomeButton_Click"
-                    BorderBrush="Black"
-                    RelativePanel.AlignLeftWithPanel="True" Background="#336C99E5"/>
-            <Button Content="&#xE0A6;"
-                    Name="BackButton"
-                    FontFamily="Segoe MDL2 Assets"
-                    BorderThickness="2"
-                    BorderBrush="Black"
-                    Click="BackButton_Click"
-                    RelativePanel.RightOf="HomeButton"
-                    Background="#336C99E5"
-                    />
+                    RelativePanel.AlignLeftWithPanel="True"/>
             <SearchBox Name="mySearchBox"
                        BorderThickness="2"
+                       Background="White"
                        FocusOnKeyboardInput="True"
                        QuerySubmitted="mySearchBox_QuerySubmitted"
                        Height="28" 
-                       Width="340"
+                       Width="300"
                        SearchHistoryEnabled="False"
-                       RelativePanel.RightOf="BackButton" PlaceholderText="Type here to search"/>
+                       RelativePanel.RightOf="HomeButton" PlaceholderText="Type here to search"/>
             <Button Content="&#xE894;"
                     BorderThickness="2"
                     Name="ClearButton"
                     FontFamily="Segoe MDL2 Assets"
                     Click="ClearButton_Click"
-                    BorderBrush="Black"
-                    RelativePanel.RightOf="mySearchBox"
-                    Background="#336C99E5"/>
+                    RelativePanel.RightOf="mySearchBox"/>
+            
         </RelativePanel>
         <SplitView Grid.Row="1" Name="MySplitView"
                    PaneBackground="Khaki"
@@ -58,43 +60,35 @@
             <SplitView.Pane>
                 <ListView Name="AlbumListView" IsItemClickEnabled="True"
                           ItemClick="AlbumListView_ItemClick">
-
                     <Button Content="Album1" 
-                    Click="Album1Button_Click"
-                    BorderBrush="Black"
-                    Background="#336C99E5"/>
-
+                            Click="Album1Button_Click"/>
                     <Button Content="Album2"                   
-                    Click="Album2Button_Click"
-                    BorderBrush="Black"
-                     Background="#336C99E5"/>
-                    
+                            Click="Album2Button_Click"/>
                     <Button Content="Favorites" 
-                    Click="FavoritePlaylist_Click"
-                    BorderBrush="Black" 
-                    Background="#336C99E5"/>
+                            Click="FavoritePlaylist_Click"/>
+
                 </ListView>
             </SplitView.Pane>
             <SplitView.Content>
-                <Grid Margin="20,20,0,0" BorderThickness="2">
+                <Grid Margin="0,0,0,0" BorderThickness="2" Background="LightGoldenrodYellow">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <Image Grid.Row="0" Name="MyImage"  Width = "200" 
                            VerticalAlignment = "Top" Margin = "50,70,0,50" Height="200" HorizontalAlignment="Left"/>
-                    <TextBlock Margin="10,0,0,0" Name ="SongTextBlock" Text="All Songs" FontSize="30" Foreground="Crimson"/>
-                    <ListView Grid.Row="1" Name="SongListView" IsItemClickEnabled="True"
+                    <TextBlock Margin="50,20,0,0" Name ="SongTextBlock" Text="All Songs" FontSize="30" Foreground="Crimson"/>
+                    <ListView Grid.Row="1" x:Name="SongListView" IsItemClickEnabled="True"
                                ItemsSource="{x:Bind songs}"
                               ItemClick="SongListView_ItemClick">
                         <ListView.ItemTemplate>
                             <DataTemplate x:DataType="data:Song">
-                                <StackPanel Orientation="Horizontal">
+                                <StackPanel Orientation="Horizontal" x:Name="SongsStackPanel" x:Uid="SongsStackPanelId">
                                     <TextBlock
                                         Text="{x:Bind SongName}"
                                         TextWrapping="Wrap"
                                         FontSize="18"
-                                        Margin="10,0,0,0"
+                                        Margin="50,0,0,0"
                                         VerticalAlignment="Center"/>
                                     <TextBlock 
                                          Text="{x:Bind Album.AlbumName}" 
@@ -109,8 +103,7 @@
                                          VerticalAlignment="Center"/>
                                     <Button Content="&#xEB52;"
                                         Name="Favorite"
-                                        Margin="15,0,0,0"
-                                        
+                                        Margin="15,0,0,0"                                   
                                         Foreground="Red"
                                         FontFamily="Segoe MDL2 Assets"
                                         BorderThickness="1"
@@ -118,7 +111,22 @@
                                         Background="White"    
                                         Click="FavoriteButton_Click"
                                         HorizontalContentAlignment="Center"
-                                            Tag=" {data: Song}"/>
+                                        Tag=" {data: Song}"
+                                        Visibility="{x:Bind FavButtonVisibility}"
+                                        ToolTipService.ToolTip="Add Song to Favorite"/>
+                                    <Button Content="&#xE74D;"
+                                        Name="RemoveFavorite"
+                                        Margin="15,0,0,0"                                   
+                                        Foreground="Black"
+                                        FontFamily="Segoe MDL2 Assets"
+                                        BorderThickness="1"
+                                        BorderBrush="Black"
+                                        Background="White"    
+                                        Click="RemoveFavButton_Click"
+                                        HorizontalContentAlignment="Center"
+                                        Tag=" {data: Song}"
+                                        Visibility="{x:Bind RemoveButtonVisibility}"
+                                       ToolTipService.ToolTip="Remove Song from Favorite"/>
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>
@@ -126,7 +134,14 @@
                     <MediaPlayerElement Background="Beige" Grid.Row="2" x:Name="SongPlayer"
                                         Width="400"
                                         AutoPlay="True"
-                                        AreTransportControlsEnabled="True"/>
+                                        AreTransportControlsEnabled="True">
+                        <MediaPlayerElement.TransportControls>
+                        <MediaTransportControls IsStopButtonVisible="True" IsStopEnabled="True"
+                                                    IsFastForwardButtonVisible="True" IsFastForwardEnabled="True"
+                                                    IsFastRewindButtonVisible="True" IsFastRewindEnabled="True"/>
+                     </MediaPlayerElement.TransportControls>
+                     </MediaPlayerElement>
+
                 </Grid>
             </SplitView.Content>
         </SplitView>

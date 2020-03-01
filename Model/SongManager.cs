@@ -9,7 +9,7 @@ namespace Team1MusicPlayer.Model
 {
     public static class SongManager
     {
-        private static List<Song> favoriteSongs = new List<Song>();
+        public static List<Song> favoriteSongs = new List<Song>();
 
         private static List<Song> getSongs()
         {
@@ -18,11 +18,11 @@ namespace Team1MusicPlayer.Model
             Album album1 = new Album("Alai", "Alai.png");
             Album album2 = new Album("AEM", "AEM.png");
         
-            songs.Add(new Song("Alaipayuthey", "Alaipayuthey-Kanna.mp3", album1, new TimeSpan(0,3,41)));
-            songs.Add(new Song("Endrendrum", "Endrendrum-Punnagai.mp3",album1, new TimeSpan(0,3,57)));
+            songs.Add(new Song("Alaipayuthey", "Alaipayuthey-Kanna.mp3", album1, new TimeSpan(0,3,41),false));
+            songs.Add(new Song("Endrendrum", "Endrendrum-Punnagai.mp3",album1, new TimeSpan(0,3,57),false));
 
-            songs.Add(new Song("IdhuNaal", "IdhuNaal.mp3", album2,new TimeSpan(0,3,39)));
-            songs.Add(new Song("Rasaali", "Rasaali.mp3", album2, new TimeSpan(0,5,38)));
+            songs.Add(new Song("IdhuNaal", "IdhuNaal.mp3", album2,new TimeSpan(0,3,39),false));
+            songs.Add(new Song("Rasaali", "Rasaali.mp3", album2, new TimeSpan(0,5,38),false));
             return songs;
         }
         public static void GetAllSongs(ObservableCollection<Song> songs)
@@ -40,8 +40,7 @@ namespace Team1MusicPlayer.Model
             filteredSongs.ForEach(s => songs.Add(s));
         }
 
-        // Creating user playlist
-
+        //User adding songs to his favorite playlist
         public static void AddFavoriteSong(Song song)
         {
             Song existingSong = SongManager.favoriteSongs.FirstOrDefault(s => s.SongName.Equals(song.SongName));
@@ -51,6 +50,7 @@ namespace Team1MusicPlayer.Model
             }
             SaveFavoriteSongsInFile();
         }
+        
 
         private async static void SaveFavoriteSongsInFile()
         {
@@ -65,15 +65,20 @@ namespace Team1MusicPlayer.Model
             Windows.Storage.StorageFile favTextFile = await storageFolder.CreateFileAsync("FavoriteSongsList.txt", Windows.Storage.CreationCollisionOption.OpenIfExists);
 
             //Write data to the file
-            await Windows.Storage.FileIO.WriteTextAsync(favTextFile, strContent);
+            Windows.Storage.FileIO.WriteTextAsync(favTextFile, strContent).GetAwaiter().GetResult();
         }
 
-        //Get favorites songs
+
         public static void GetFavoriteSongs(ObservableCollection<Song> songs)
         {
             LoadfavoriteSongsFromFile();
             songs.Clear();
-            SongManager.favoriteSongs.ForEach(s => songs.Add(s));
+            SongManager.favoriteSongs.ForEach(s =>
+            {
+                s.RemoveButtonVisibility = true;
+                s.FavButtonVisibility = false;
+                songs.Add(s);
+            });
         }
         private async static void LoadfavoriteSongsFromFile()
         {
@@ -91,7 +96,6 @@ namespace Team1MusicPlayer.Model
             }         
             ////C:\Users\USERNAME\AppData\Local\Packages\0c238a61-95f8-4b4e-b8d7-3a23b6ad32d2_3xkgbvrn32f9p\LocalState
         }
-
         public static void FilterSongByAlbumName(ObservableCollection<Song> songs, string albumName)
         {
             var allSongs = getSongs();
@@ -100,7 +104,5 @@ namespace Team1MusicPlayer.Model
 
             filteredSongs.ForEach(s => songs.Add(s));
         }
-
-
     }
 }
