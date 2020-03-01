@@ -111,7 +111,22 @@
                                         Background="White"    
                                         Click="FavoriteButton_Click"
                                         HorizontalContentAlignment="Center"
-                                            Tag=" {data: Song}"/>
+                                        Tag=" {data: Song}"
+                                        Visibility="{x:Bind FavButtonVisibility}"
+                                        ToolTipService.ToolTip="Add Song to Favorite"/>
+                                    <Button Content="&#xE74D;"
+                                        Name="RemoveFavorite"
+                                        Margin="15,0,0,0"                                   
+                                        Foreground="Black"
+                                        FontFamily="Segoe MDL2 Assets"
+                                        BorderThickness="1"
+                                        BorderBrush="Black"
+                                        Background="White"    
+                                        Click="RemoveFavButton_Click"
+                                        HorizontalContentAlignment="Center"
+                                        Tag=" {data: Song}"
+                                        Visibility="{x:Bind RemoveButtonVisibility}"
+                                       ToolTipService.ToolTip="Remove Song from Favorite"/>
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>

@@ -26,11 +26,11 @@ namespace Team1MusicPlayer
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    
+
     public sealed partial class MainPage : Page
     {
         private ObservableCollection<Song> songs;
-        
+
         public MainPage()
         {
             this.InitializeComponent();
@@ -38,7 +38,7 @@ namespace Team1MusicPlayer
             MyImage.Source = new BitmapImage(new Uri("ms-appx:///Assets/ImageFile/" + "MusicIcon.png", UriKind.RelativeOrAbsolute));
             SongManager.GetAllSongs(songs);
         }
-        
+
         private void HomeButton_Click(object sender, RoutedEventArgs e)
         {
             mySearchBox.QueryText = string.Empty;
@@ -81,21 +81,22 @@ namespace Team1MusicPlayer
             var button = sender as Button;
             //find out if song exists in fav list
             Song favSong = (Song)button.DataContext;
-            Song existingSong =SongManager.favoriteSongs.FirstOrDefault(s => s.AudioFile.Equals(favSong.AudioFile));
-           
-            if (existingSong == null)
-            {
-                SongManager.AddFavoriteSong(favSong);
-            }
-            else
-            {
-                SongManager.RemoveFavoriteSong(favSong);                                
-            }
+            //Song existingSong =SongManager.favoriteSongs.FirstOrDefault(s => s.AudioFile.Equals(favSong.AudioFile));
+
+            //if (existingSong == null)
+            //{
+            //    SongManager.AddFavoriteSong(favSong);
+            //}
+            //else
+            //{
+            //    SongManager.RemoveFavoriteSong(favSong);                                
+            //}
+            SongManager.AddFavoriteSong(favSong);
             if (SongTextBlock.Text == "Favorite Songs")
                 SongManager.GetFavoriteSongs(songs);
             else if (SongTextBlock.Text == "All Songs")
                 SongManager.GetAllSongs(songs);
-            
+
 
         }
         private void Album1Button_Click(object sender, RoutedEventArgs e)
@@ -115,7 +116,18 @@ namespace Team1MusicPlayer
             songs.Clear();
             SongManager.GetFavoriteSongs(songs);
             SongTextBlock.Text = "Favorite Songs";
-           
+
+        }
+        private void RemoveFavButton_Click(object sender, RoutedEventArgs e)
+        {
+            var button = sender as Button;
+            Song favSong = (Song)button.DataContext;
+            songs.Clear();
+            SongManager.RemoveFavoriteSong(favSong);
+            if (SongTextBlock.Text == "Favorite Songs")
+                SongManager.GetFavoriteSongs(songs);
+            else if (SongTextBlock.Text == "All Songs")
+                SongManager.GetAllSongs(songs);
         }
     }
 }
