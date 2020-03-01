@@ -50,6 +50,21 @@
                     FontFamily="Segoe MDL2 Assets"
                     Click="ClearButton_Click"
                     RelativePanel.RightOf="mySearchBox"/>
+            <Button Content="AddSongs"
+                    BorderThickness="2"
+                    Name="AddSongs"
+                    Click="AddSongs_Click"
+                    RelativePanel.RightOf="ClearButton"/>
+            <Button Content="DeleteSongs"
+                    BorderThickness="2"
+                    Name="DeleteSongs"
+                    Click="DeleteSongs_Click"
+                    RelativePanel.RightOf="AddSongs"/>
+            <Button Content="AddPhoto"
+                    BorderThickness="2"
+                    Name="AddPhoto"
+                    Click="AddPhoto_Click"
+                    RelativePanel.RightOf="DeleteSongs"/>
             
         </RelativePanel>
         <SplitView Grid.Row="1" Name="MySplitView"
@@ -73,12 +88,19 @@
                 <Grid Margin="0,0,0,0" BorderThickness="2" Background="LightGoldenrodYellow">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <Image Grid.Row="0" Name="MyImage"  Width = "200" 
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>                        
+                    </Grid.ColumnDefinitions>
+                    
+                    <Image Grid.Row="0" Grid.Column="0" Name="MyImage"  Width = "200" 
                            VerticalAlignment = "Top" Margin = "50,70,0,50" Height="200" HorizontalAlignment="Left"/>
                     <TextBlock Margin="50,20,0,0" Name ="SongTextBlock" Text="All Songs" FontSize="30" Foreground="Crimson"/>
-                    <ListView Grid.Row="1" x:Name="SongListView" IsItemClickEnabled="True"
+                    
+                    <ListView Grid.Row="1" Grid.Column="0" x:Name="SongListView" IsItemClickEnabled="True"
                                ItemsSource="{x:Bind songs}"
                               ItemClick="SongListView_ItemClick">
                         <ListView.ItemTemplate>
@@ -131,15 +153,18 @@
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
+                    <ListView Height="300" Grid.Row="1" Grid.Column="1" Name="AddPlaylist" IsItemClickEnabled="True" ItemClick="AddPlaylist_ItemClick">
+                    </ListView>
+                    
                     <MediaPlayerElement Background="Beige" Grid.Row="2" x:Name="SongPlayer"
                                         Width="400"
                                         AutoPlay="True"
                                         AreTransportControlsEnabled="True">
                         <MediaPlayerElement.TransportControls>
-                        <MediaTransportControls IsStopButtonVisible="True" IsStopEnabled="True"
-                                                    IsFastForwardButtonVisible="True" IsFastForwardEnabled="True"
-                                                    IsFastRewindButtonVisible="True" IsFastRewindEnabled="True"/>
-                     </MediaPlayerElement.TransportControls>
+                            <MediaTransportControls IsStopButtonVisible="True" IsStopEnabled="True"
+                                                    IsNextTrackButtonVisible="True" IsPreviousTrackButtonVisible="True"/>
+
+                        </MediaPlayerElement.TransportControls>
                      </MediaPlayerElement>
 
                 </Grid>

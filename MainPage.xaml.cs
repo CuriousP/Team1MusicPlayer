@@ -10,6 +10,7 @@ using Team1MusicPlayer.Model;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Media.Core;
+using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -128,6 +129,40 @@ namespace Team1MusicPlayer
                 SongManager.GetFavoriteSongs(songs);
             else if (SongTextBlock.Text == "All Songs")
                 SongManager.GetAllSongs(songs);
+        }
+
+        private async void AddSongs_Click(object sender, RoutedEventArgs e)
+        {
+            var userPlayList = new UserPlayList();
+            await userPlayList.AddMedia(AddPlaylist, SongPlayer);
+        }
+
+        private void DeleteSongs_Click(object sender, RoutedEventArgs e)
+        {
+            AddPlaylist.Items.Remove(AddPlaylist.SelectedItem);
+        }
+
+        private async void AddPhoto_Click(object sender, RoutedEventArgs e)
+        {
+            var picker = new Windows.Storage.Pickers.FileOpenPicker();
+            picker.ViewMode = Windows.Storage.Pickers.PickerViewMode.Thumbnail;
+            picker.SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.PicturesLibrary;
+            picker.FileTypeFilter.Add(".jpg");
+            picker.FileTypeFilter.Add(".jpeg");
+            picker.FileTypeFilter.Add(".png");
+            Windows.Storage.StorageFile file = await picker.PickSingleFileAsync();
+            if (file != null)
+            {
+                var stream = await file.OpenAsync(Windows.Storage.FileAccessMode.Read);
+                var image = new BitmapImage();
+                image.SetSource(stream);
+                MyImage.Source = image;
+            }
+        }
+
+        private  void AddPlaylist_ItemClick(object sender, ItemClickEventArgs e)
+        {
+          
         }
     }
 }

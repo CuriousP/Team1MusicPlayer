@@ -125,6 +125,7 @@
     <Compile Include="Model\Album.cs" />
     <Compile Include="Model\Song.cs" />
     <Compile Include="Model\SongManager.cs" />
+    <Compile Include="Model\UserPlayList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
