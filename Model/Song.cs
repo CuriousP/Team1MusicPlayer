@@ -5,7 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Team1MusicPlayer.Model
-{
+{/// <summary>
+/// Data model which represents Song object
+/// </summary>
     public class Song
     {
         public string SongName { get; set; }

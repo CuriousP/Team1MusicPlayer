@@ -24,7 +24,7 @@ using Windows.UI.Xaml.Navigation;
 namespace Team1MusicPlayer
 {
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// MainPage for Team1MusicPlayer is generated here
     /// </summary>
 
     public sealed partial class MainPage : Page
@@ -56,6 +56,7 @@ namespace Team1MusicPlayer
             MyImage.Source = new BitmapImage(new Uri("ms-appx:///Assets/ImageFile/" + song.Album.ImageFile, UriKind.RelativeOrAbsolute));
 
         }
+
         private void AlbumListView_ItemClick(object sender, ItemClickEventArgs e)
         {
             if (e.ClickedItem is Album)
@@ -65,6 +66,7 @@ namespace Team1MusicPlayer
                 SongPlayer.Source = MediaSource.CreateFromUri(pathUri);
             }
         }
+
         private void mySearchBox_QuerySubmitted(SearchBox sender, SearchBoxQuerySubmittedEventArgs args)
         {
             SongManager.SearchSongByName(songs, mySearchBox.QueryText);
@@ -79,26 +81,14 @@ namespace Team1MusicPlayer
         private void FavoriteButton_Click(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;
-            //find out if song exists in fav list
             Song favSong = (Song)button.DataContext;
-            //Song existingSong =SongManager.favoriteSongs.FirstOrDefault(s => s.AudioFile.Equals(favSong.AudioFile));
-
-            //if (existingSong == null)
-            //{
-            //    SongManager.AddFavoriteSong(favSong);
-            //}
-            //else
-            //{
-            //    SongManager.RemoveFavoriteSong(favSong);                                
-            //}
             SongManager.AddFavoriteSong(favSong);
             if (SongTextBlock.Text == "Favorite Songs")
                 SongManager.GetFavoriteSongs(songs);
             else if (SongTextBlock.Text == "All Songs")
                 SongManager.GetAllSongs(songs);
-
-
         }
+
         private void Album1Button_Click(object sender, RoutedEventArgs e)
         {
             SongManager.FilterSongByAlbumName(songs, "alai");
@@ -118,6 +108,7 @@ namespace Team1MusicPlayer
             SongTextBlock.Text = "Favorite Songs";
 
         }
+
         private void RemoveFavButton_Click(object sender, RoutedEventArgs e)
         {
             var button = sender as Button;
