@@ -50,8 +50,8 @@
                     FontFamily="Segoe MDL2 Assets"
                     Click="ClearButton_Click"
                     RelativePanel.RightOf="mySearchBox"/>
-            
-        </RelativePanel>
+         </RelativePanel>
+        
         <SplitView Grid.Row="1" Name="MySplitView"
                    PaneBackground="Khaki"
                    DisplayMode="CompactOverlay"
@@ -62,13 +62,14 @@
                           ItemClick="AlbumListView_ItemClick">
                     <Button Content="Album1" 
                             Click="Album1Button_Click"/>
-                    <Button Content="Album2"                   
+                    <Button Content="Album2"
                             Click="Album2Button_Click"/>
                     <Button Content="Favorites" 
                             Click="FavoritePlaylist_Click"/>
 
                 </ListView>
             </SplitView.Pane>
+            
             <SplitView.Content>
                 <Grid Margin="0,0,0,0" BorderThickness="2" Background="LightGoldenrodYellow">
                     <Grid.RowDefinitions>
@@ -78,6 +79,7 @@
                     <Image Grid.Row="0" Name="MyImage"  Width = "200" 
                            VerticalAlignment = "Top" Margin = "50,70,0,50" Height="200" HorizontalAlignment="Left"/>
                     <TextBlock Margin="50,20,0,0" Name ="SongTextBlock" Text="All Songs" FontSize="30" Foreground="Crimson"/>
+                    
                     <ListView Grid.Row="1" x:Name="SongListView" IsItemClickEnabled="True"
                                ItemsSource="{x:Bind songs}"
                               ItemClick="SongListView_ItemClick">
@@ -103,7 +105,7 @@
                                          VerticalAlignment="Center"/>
                                     <Button Content="&#xEB52;"
                                         Name="Favorite"
-                                        Margin="15,0,0,0"                                   
+                                        Margin="15,0,0,0"
                                         Foreground="Red"
                                         FontFamily="Segoe MDL2 Assets"
                                         BorderThickness="1"
@@ -116,7 +118,7 @@
                                         ToolTipService.ToolTip="Add Song to Favorite"/>
                                     <Button Content="&#xE74D;"
                                         Name="RemoveFavorite"
-                                        Margin="15,0,0,0"                                   
+                                        Margin="15,0,0,0"
                                         Foreground="Black"
                                         FontFamily="Segoe MDL2 Assets"
                                         BorderThickness="1"
@@ -131,6 +133,7 @@
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
+                    
                     <MediaPlayerElement Background="Beige" Grid.Row="2" x:Name="SongPlayer"
                                         Width="400"
                                         AutoPlay="True"

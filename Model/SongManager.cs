@@ -6,11 +6,12 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Team1MusicPlayer.Model
-{
+{/// <summary>
+/// This class is the glue between view and model
+/// </summary>
     public static class SongManager
     {
         public static List<Song> favoriteSongs = new List<Song>();
-
         private static List<Song> getSongs()
         {
             var songs = new List<Song>();
@@ -25,13 +26,15 @@ namespace Team1MusicPlayer.Model
             songs.Add(new Song("Rasaali", "Rasaali.mp3", album2, new TimeSpan(0,5,38),false));
             return songs;
         }
+
         public static void GetAllSongs(ObservableCollection<Song> songs)
         {
             var allSongs = getSongs();
             songs.Clear();
             allSongs.ForEach(s => songs.Add(s));
         }
-        public static void SearchSongByName(ObservableCollection<Song> songs, string songName) // Search songs By Name
+
+        public static void SearchSongByName(ObservableCollection<Song> songs, string songName)
         {
             var allSongs = getSongs();
             songs.Clear();
@@ -40,7 +43,19 @@ namespace Team1MusicPlayer.Model
             filteredSongs.ForEach(s => songs.Add(s));
         }
 
-        //User adding songs to his favorite playlist
+        public static void FilterSongByAlbumName(ObservableCollection<Song> songs, string albumName)
+        {
+            var allSongs = getSongs();
+            songs.Clear();
+            var filteredSongs = allSongs.Where(s => s.Album.AlbumName.ToLower().Contains(albumName.ToLower())).ToList();
+
+            filteredSongs.ForEach(s => songs.Add(s));
+        }
+
+        /// <summary>
+        /// This method generates the list of favorite songs added by the user by pressing the heart icon.
+        /// </summary>
+        /// <param name="song"></param>
         public static void AddFavoriteSong(Song song)
         {
             Song existingSong = SongManager.favoriteSongs.FirstOrDefault(s => s.SongName.Equals(song.SongName));
@@ -50,8 +65,11 @@ namespace Team1MusicPlayer.Model
             }
             SaveFavoriteSongsInFile();
         }
-        
 
+        
+        /// <summary>
+        /// This method is to create a local file and to add the users list of favorite songs in it
+        /// </summary>
         private async static void SaveFavoriteSongsInFile()
         {
             string strContent = "";
@@ -68,6 +86,12 @@ namespace Team1MusicPlayer.Model
             Windows.Storage.FileIO.WriteTextAsync(favTextFile, strContent).GetAwaiter().GetResult();
         }
 
+
+        /// <summary>
+        /// /This method is called when the user press the delete icon in the favorites.
+        /// So the song gets deleted from the favorite list
+        /// </summary>
+        /// <param name="song"></param>
         public static void RemoveFavoriteSong(Song song)
         {
             Song existingSong = SongManager.favoriteSongs.FirstOrDefault(s => s.SongName.Equals(song.SongName));
@@ -80,6 +104,12 @@ namespace Team1MusicPlayer.Model
             SaveFavoriteSongsInFile();
         }
 
+
+        /// <summary>
+        /// This method loads the list of favorite songs and sets the visibility property of delete icon as true and heart icon as 
+        /// false when the songs are displayed in the Favorites.
+        /// </summary>
+        /// <param name="songs"></param>
         public static void GetFavoriteSongs(ObservableCollection<Song> songs)
         {
             LoadfavoriteSongsFromFile();
@@ -104,16 +134,9 @@ namespace Team1MusicPlayer.Model
                 Song existingSong = getSongs().FirstOrDefault(s => s.AudioFile.Equals(strAudioFile));
                 SongManager.favoriteSongs.Add(existingSong);
 
-            }         
-            ////C:\Users\USERNAME\AppData\Local\Packages\0c238a61-95f8-4b4e-b8d7-3a23b6ad32d2_3xkgbvrn32f9p\LocalState
+            }
+           
         }
-        public static void FilterSongByAlbumName(ObservableCollection<Song> songs, string albumName)
-        {
-            var allSongs = getSongs();
-            songs.Clear();
-            var filteredSongs = allSongs.Where(s => s.Album.AlbumName.ToLower().Contains(albumName.ToLower())).ToList();
-
-            filteredSongs.ForEach(s => songs.Add(s));
-        }
+        
     }
 }

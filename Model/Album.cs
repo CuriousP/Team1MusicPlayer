@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Team1MusicPlayer.Model
 {
+    /// <summary>
+    /// Data model which represents Album properties for a Song
+    /// </summary>
     public class Album
     {
         public string AlbumName { get; set; }
