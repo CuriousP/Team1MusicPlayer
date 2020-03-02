@@ -1,4 +1,4 @@
-# Team1MusicPlayer
+# Team1 MusicPlayer
 This is an UWP app to perform the following features
 * To list all songs in the app.
 * Play the song by calling the media player element and to display the album picture associated with the song.
